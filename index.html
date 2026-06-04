@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lululau Pets — House & pet sitting con alma</title>
+<meta name="description" content="Luz y Lautaro cuidan tu casa y tus mascotas como si fueran nuestras. House & pet sitting de confianza, con base en Canarias." />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+<!-- Open Graph -->
+<meta property="og:title" content="Lululau Pets — House & pet sitting con alma" />
+<meta property="og:description" content="Tu casa y tus mascotas, en las mejores manos." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="assets/logo.png" />
+
+<!-- Fonts: Instrument Serif (display) + Satoshi (body) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="assets/base.css" />
+
+<style>
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero { position: relative; overflow: hidden; }
+.hero .wrap { padding-top: clamp(40px, 6vw, 76px); padding-bottom: clamp(48px, 7vw, 96px); }
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+.hero-eyebrow { margin-bottom: var(--space-6); }
+.hero h1 {
+  font-size: clamp(38px, 5.2vw, 66px);
+  line-height: 1.12;
+  margin-bottom: var(--space-8);
+  padding-bottom: 0.08em;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--color-primary-deep);
+}
+.hero h1 i { font-style: italic; color: var(--color-accent-deep); }
+.hero-lead {
+  font-size: clamp(17px, 1.1rem + 0.3vw, 21px);
+  color: var(--color-text-muted);
+  max-width: 36ch;
+  margin-bottom: var(--space-8);
+}
+.hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-bottom: var(--space-8); }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 14px; font-weight: 600; color: var(--color-text);
+}
+.hero-badge .stars { color: var(--color-accent); letter-spacing: 2px; font-size: 15px; }
+.hero-badge .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--color-border); }
+
+/* hero media — organic rounded photo */
+.hero-media { position: relative; }
+.hero-photo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  border-radius: 56% 44% 52% 48% / 60% 56% 44% 40%;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-deco {
+  position: absolute; z-index: -1;
+  width: 64%; aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--color-accent) 0%, var(--color-accent-deep) 100%);
+  opacity: 0.16;
+  top: -6%; right: -8%;
+}
+.hero-chip {
+  position: absolute; bottom: 18px; left: -14px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--r-xl);
+  padding: 12px 16px;
+  box-shadow: var(--shadow-md);
+  display: flex; align-items: center; gap: 12px;
+}
+.hero-chip .avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--color-primary); flex-shrink: 0;
+  display: grid; place-items: center; color: #fff; font-size: 18px;
+}
+.hero-chip b { font-family: var(--font-display); font-size: 22px; font-weight: 400; line-height: 1; }
+.hero-chip small { color: var(--color-text-muted); font-size: 12.5px; }
+
+/* Static photo placeholders (editorial — awaiting real photos) */
+.ph { position: relative; overflow: hidden; background: linear-gradient(140deg, oklch(0.90 0.035 185), oklch(0.85 0.05 90)); }
+.ph.ph--teal   { background: linear-gradient(140deg, oklch(0.91 0.03 190), oklch(0.82 0.065 200)); }
+.ph.ph--orange { background: linear-gradient(140deg, oklch(0.92 0.035 78), oklch(0.83 0.075 58)); }
+.ph.ph--sand   { background: linear-gradient(140deg, oklch(0.94 0.018 92), oklch(0.86 0.04 72)); }
+.ph::before {
+  content: ""; position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(135deg, oklch(1 0 0 / 0.06) 0 2px, transparent 2px 10px);
+}
+.ph-cap {
+  position: absolute; left: 12px; bottom: 12px; z-index: 1;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase;
+  color: oklch(0.34 0.03 60);
+  background: oklch(0.98 0.008 80 / 0.85);
+  padding: 5px 9px; border-radius: 5px;
+  -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
+}
+
+/* ============================================================
+   WHY — editorial numbered list
+   ============================================================ */
+.why { background: var(--color-surface); border-block: 1px solid var(--color-border); }
+.why-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(40px, 6vw, 88px); align-items: start; }
+.why-head { position: sticky; top: 100px; }
+.why-head h2 { font-size: clamp(32px, 3.4vw, 48px); margin-top: var(--space-4); }
+.why-list { display: flex; flex-direction: column; }
+.why-item {
+  display: grid; grid-template-columns: auto 1fr; gap: clamp(20px, 3vw, 40px);
+  padding-block: clamp(28px, 4vw, 44px);
+  border-top: 1px solid var(--color-divider);
+}
+.why-item:first-child { border-top: none; padding-top: 0; }
+.why-num {
+  font-family: var(--font-display); font-size: clamp(40px, 5vw, 64px);
+  line-height: 1; color: var(--color-primary); opacity: 0.85;
+}
+.why-item:nth-child(2) .why-num { color: var(--color-accent); }
+.why-body h3 { font-family: var(--font-display); font-weight: 400; font-size: clamp(23px, 2.4vw, 30px); margin-bottom: var(--space-2); line-height: 1.1; }
+.why-body p { color: var(--color-text-muted); max-width: 48ch; }
+
+/* ============================================================
+   SERVICES
+   ============================================================ */
+.svc-head { max-width: 620px; margin-bottom: clamp(40px, 5vw, 64px); }
+.svc-head h2 { font-size: clamp(32px, 3.8vw, 52px); margin-top: var(--space-4); }
+.svc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 2.5vw, 32px); }
+.svc-card {
+  position: relative; overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--r-xl);
+  padding: clamp(28px, 3.5vw, 44px);
+  transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+}
+.svc-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: transparent; }
+.svc-card .tab {
+  position: absolute; top: 0; left: clamp(28px, 3.5vw, 44px);
+  width: 56px; height: 6px; border-radius: 0 0 6px 6px;
+}
+.svc-card.pet .tab { background: var(--color-primary); }
+.svc-card.house .tab { background: var(--color-accent); }
+.svc-icon {
+  width: 56px; height: 56px; border-radius: var(--r-lg);
+  display: grid; place-items: center; font-size: 28px; margin-bottom: var(--space-6);
+}
+.svc-card.pet .svc-icon { background: oklch(0.92 0.05 180); }
+.svc-card.house .svc-icon { background: oklch(0.92 0.05 60); }
+.svc-card h3 { font-family: var(--font-display); font-weight: 400; font-size: clamp(28px, 3vw, 38px); margin-bottom: var(--space-3); line-height: 1; }
+.svc-card p { color: var(--color-text-muted); margin-bottom: var(--space-6); }
+.svc-tag { font-size: 13.5px; font-weight: 600; color: var(--color-text); letter-spacing: 0.01em; padding-top: var(--space-4); border-top: 1px solid var(--color-divider); }
+.svc-more { margin-top: clamp(36px, 4vw, 52px); }
+.link-arrow { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: var(--color-primary-deep); }
+.link-arrow .arrow { transition: transform var(--t); }
+.link-arrow:hover .arrow { transform: translateX(4px); }
+
+/* ============================================================
+   TESTIMONIALS
+   ============================================================ */
+.tst { background: var(--color-surface); border-block: 1px solid var(--color-border); }
+.tst-head { max-width: 640px; margin-bottom: clamp(40px, 5vw, 64px); }
+.tst-head h2 { font-size: clamp(30px, 3.4vw, 46px); margin-top: var(--space-4); }
+.tst-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 2.5vw, 28px); }
+.tst-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--r-xl);
+  padding: clamp(24px, 3vw, 34px);
+  display: flex; flex-direction: column; gap: var(--space-4);
+}
+.tst-card:nth-child(2) { margin-top: clamp(0px, 3vw, 32px); }
+.tst-stars { color: var(--color-accent); letter-spacing: 2px; font-size: 16px; }
+.tst-quote { font-family: var(--font-display); font-weight: 400; font-size: clamp(19px, 1.9vw, 23px); line-height: 1.3; color: var(--color-text); }
+.tst-foot { display: flex; align-items: center; gap: 14px; margin-top: auto; padding-top: var(--space-4); border-top: 1px solid var(--color-divider); }
+.tst-avatar {
+  width: 48px; height: 48px; border-radius: 50%; flex-shrink: 0;
+  display: grid; place-items: center; color: #fff;
+  font-family: var(--font-display); font-size: 23px; line-height: 1;
+}
+.tst-avatar.a1 { background: var(--color-primary-deep); }
+.tst-avatar.a2 { background: var(--color-accent-deep); }
+.tst-avatar.a3 { background: var(--color-primary); }
+.tst-name { font-weight: 700; font-size: 15px; }
+.tst-meta { font-size: 13px; color: var(--color-text-muted); }
+
+/* ============================================================
+   HOST REVIEWS — verified reviews preview
+   ============================================================ */
+.hr { }
+.hr-head { max-width: 660px; margin-bottom: clamp(32px, 4vw, 52px); }
+.hr-head h2 { font-size: clamp(30px, 3.4vw, 46px); margin-top: var(--space-4); }
+.hr-intro { color: var(--color-text-muted); margin-top: var(--space-3); max-width: 56ch; }
+.hr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2vw, 24px); margin-bottom: clamp(32px, 4vw, 48px); }
+.hr-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--r-lg);
+  padding: clamp(20px, 2.4vw, 28px);
+  display: flex; flex-direction: column; gap: var(--space-3);
+}
+.hr-verified { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 700; letter-spacing: 0.02em; color: var(--color-primary-deep); text-transform: uppercase; }
+.hr-verified .check { width: 17px; height: 17px; border-radius: 50%; background: var(--color-primary-deep); color: #fff; display: grid; place-items: center; font-size: 10px; line-height: 1; }
+.hr-stars { color: var(--color-accent); letter-spacing: 2px; font-size: 14px; }
+.hr-quote { font-size: 16px; line-height: 1.5; color: var(--color-text); }
+.hr-meta { margin-top: auto; padding-top: var(--space-3); border-top: 1px solid var(--color-divider); font-size: 13px; color: var(--color-text-muted); }
+.hr-meta b { display: block; color: var(--color-text); font-weight: 700; font-size: 14.5px; }
+.hr-actions { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; }
+
+/* ============================================================
+   GALLERY
+   ============================================================ */
+.gal-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--space-6); margin-bottom: clamp(32px, 4vw, 52px); }
+.gal-head .txt { max-width: 560px; }
+.gal-head h2 { font-size: clamp(30px, 3.4vw, 46px); margin-top: var(--space-4); }
+.gal-head p { color: var(--color-text-muted); margin-top: var(--space-3); }
+.masonry { columns: 3 240px; column-gap: clamp(14px, 1.6vw, 20px); }
+.masonry > * { break-inside: avoid; margin-bottom: clamp(14px, 1.6vw, 20px); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-sm); }
+.masonry img { width: 100%; object-fit: cover; display: block; }
+.gal-1 { height: 320px; } .gal-2 { height: 240px; } .gal-3 { height: 380px; }
+.gal-4 { height: 260px; } .gal-5 { height: 340px; }
+
+/* ============================================================
+   FINAL CTA
+   ============================================================ */
+.final { padding-block: clamp(20px, 4vw, 48px); }
+.final-panel {
+  position: relative; overflow: hidden;
+  background: linear-gradient(135deg, var(--color-primary-deep) 0%, var(--color-primary-active) 100%);
+  border-radius: clamp(20px, 3vw, 36px);
+  padding: clamp(40px, 6vw, 84px);
+  color: #fff;
+  text-align: left;
+}
+.final-panel::before {
+  content: ""; position: absolute; right: -60px; top: -60px;
+  width: 320px; height: 320px; border-radius: 50%;
+  background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%); opacity: 0.32;
+}
+.final-panel .inner { position: relative; max-width: 620px; }
+.final-panel h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(32px, 4.6vw, 60px); line-height: 1.02; margin-bottom: var(--space-4); }
+.final-panel p { font-size: clamp(16px, 1.05rem + 0.2vw, 20px); opacity: 0.92; margin-bottom: var(--space-8); max-width: 48ch; }
+.final-panel .btn-accent { box-shadow: 0 10px 28px oklch(0.4 0.06 180 / 0.5); }
+.final-note { display: block; margin-top: var(--space-6); font-size: 14px; opacity: 0.85; }
+
+/* ============================================================
+   RESPONSIVE — page sections
+   ============================================================ */
+@media (max-width: 980px) {
+  .hero-grid { grid-template-columns: 1fr; gap: var(--space-12); }
+  .hero-media { max-width: 460px; margin-inline: auto; order: -1; }
+  .why-grid { grid-template-columns: 1fr; gap: var(--space-10); }
+  .why-head { position: static; }
+  .svc-grid { grid-template-columns: 1fr; }
+  .tst-grid { grid-template-columns: 1fr; }
+  .tst-card:nth-child(2) { margin-top: 0; }
+  .hr-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 540px) {
+  .hero h1 { font-size: clamp(38px, 11vw, 52px); }
+  .hero-actions .btn { flex: 1 1 auto; }
+  .masonry { columns: 2 140px; }
+}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main" data-i18n="nav.skip">Saltar al contenido</a>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <div class="nav-inner">
+      <a class="brand" href="/" aria-label="Lululau Pets">
+        <img src="assets/logo.png" alt="Lululau Pets — perro y gato ilustrados" />
+        <span class="brand-name"><b>Lululau</b> <span>Pets</span></span>
+      </a>
+
+      <nav class="nav-links" aria-label="Principal">
+        <a href="/" data-i18n="nav.home">Inicio</a>
+        <a href="/nosotros" data-i18n="nav.about">Nosotros</a>
+        <a href="/servicios" data-i18n="nav.services">Servicios</a>
+        <a href="/galeria" data-i18n="nav.gallery">Galería</a>
+        <a href="/reviews" data-i18n="nav.reviews">Reseñas</a>
+        <a href="/contacto" data-i18n="nav.contact">Contacto</a>
+      </nav>
+
+      <div class="nav-right">
+        <div class="langs" role="group" aria-label="Language">
+          <button type="button" data-lang="es" aria-pressed="true">ES</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+          <button type="button" data-lang="de" aria-pressed="false">DE</button>
+          <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+        </div>
+        <a class="btn btn-primary nav-cta" href="/contacto" data-i18n="nav.cta">Agendar videollamada</a>
+        <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-inner">
+        <a href="/" data-i18n="nav.home">Inicio</a>
+        <a href="/nosotros" data-i18n="nav.about">Nosotros</a>
+        <a href="/servicios" data-i18n="nav.services">Servicios</a>
+        <a href="/galeria" data-i18n="nav.gallery">Galería</a>
+        <a href="/reviews" data-i18n="nav.reviews">Reseñas</a>
+        <a href="/contacto" data-i18n="nav.contact">Contacto</a>
+        <a class="btn btn-primary" href="/contacto" data-i18n="nav.cta">Agendar videollamada</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <p class="kicker hero-eyebrow" data-i18n="hero.eyebrow">House &amp; pet sitting · Canarias y más allá</p>
+          <h1 class="display"><em data-i18n="hero.title">Tu hogar lejos del hogar — también para ellos.</em></h1>
+          <p class="hero-lead" data-i18n="hero.subtitle">Somos Luz y Lautaro, una pareja nómada que cuida tu hogar y tus animales mientras viajas.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="/contacto" data-i18n="hero.cta1">Agendar videollamada</a>
+            <a class="btn btn-ghost" href="/servicios"><span data-i18n="hero.cta2">Ver servicios</span> <span class="arrow" aria-hidden="true">→</span></a>
+          </div>
+          <p class="hero-badge">
+            <span class="stars" aria-hidden="true">★★★★★</span>
+            <span data-i18n="hero.badge">+50 sits completados · 3 continentes</span>
+          </p>
+        </div>
+
+        <div class="hero-media">
+          <span class="hero-deco" aria-hidden="true"></span>
+          <div class="hero-photo">
+            <img src="assets/photos/hero-couple.jpg" data-i18n-attr="alt:hero.photo" alt="Luz y Lautaro con un perro" loading="eager" decoding="async" />
+          </div>
+          <div class="hero-chip">
+            <span class="avatar" aria-hidden="true">★</span>
+            <span>
+              <b>5/5</b><br />
+              <small>Brisbane · Gold Coast · Tawonga</small>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHY US ============ -->
+  <section class="why section" id="why">
+    <div class="wrap">
+      <div class="why-grid">
+        <div class="why-head reveal">
+          <p class="kicker" data-i18n="why.kicker">Por qué nosotros</p>
+          <h2 class="display" data-i18n="why.title">No es una app. Somos dos personas que de verdad lo cuidan.</h2>
+        </div>
+        <div class="why-list">
+          <article class="why-item reveal">
+            <div class="why-num" data-i18n="why.1.n">01</div>
+            <div class="why-body">
+              <h3 data-i18n="why.1.t">Noticias cada día</h3>
+              <p data-i18n="why.1.d">Fotos y vídeos diarios de tus animales y de cómo está la casa.</p>
+            </div>
+          </article>
+          <article class="why-item reveal">
+            <div class="why-num" data-i18n="why.2.n">02</div>
+            <div class="why-body">
+              <h3 data-i18n="why.2.t">Una pareja, no un turno</h3>
+              <p data-i18n="why.2.d">Vivimos en tu casa los días que dura el sit.</p>
+            </div>
+          </article>
+          <article class="why-item reveal">
+            <div class="why-num" data-i18n="why.3.n">03</div>
+            <div class="why-body">
+              <h3 data-i18n="why.3.t">La devolvemos mejor</h3>
+              <p data-i18n="why.3.d">Regamos las plantas, recogemos el correo y dejamos todo impecable.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="svc section" id="services">
+    <div class="wrap">
+      <div class="svc-head reveal">
+        <p class="kicker" data-i18n="svc.kicker">Qué hacemos</p>
+        <h2 class="display" data-i18n="svc.title">Dos formas de cuidar lo que más quieres.</h2>
+      </div>
+      <div class="svc-grid">
+        <article class="svc-card pet reveal">
+          <span class="tab" aria-hidden="true"></span>
+          <div class="svc-icon" aria-hidden="true">🐾</div>
+          <h3 data-i18n="svc.pet.t">Pet Sitting</h3>
+          <p data-i18n="svc.pet.d">Cuidamos a tus mascotas en su propio hogar.</p>
+          <div class="svc-tag" data-i18n="svc.pet.tag">Perros · Gatos · Medicación · Paseos</div>
+        </article>
+        <article class="svc-card house reveal">
+          <span class="tab" aria-hidden="true"></span>
+          <div class="svc-icon" aria-hidden="true">🏡</div>
+          <h3 data-i18n="svc.house.t">House Care</h3>
+          <p data-i18n="svc.house.d">¿Sin mascotas? También cuidamos tu casa.</p>
+          <div class="svc-tag" data-i18n="svc.house.tag">Plantas · Correo · Seguridad · Incidencias</div>
+        </article>
+      </div>
+      <div class="svc-more reveal">
+        <a class="link-arrow" href="/servicios"><span data-i18n="svc.more">Ver servicios en detalle</span> <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section class="tst section" id="testimonials">
+    <div class="wrap">
+      <div class="tst-head reveal">
+        <p class="kicker" data-i18n="tst.kicker">Lo que dicen</p>
+        <h2 class="display" data-i18n="tst.title">Clientes de tres continentes nos confían sus llaves.</h2>
+      </div>
+      <div class="tst-grid">
+        <article class="tst-card reveal">
+          <div class="tst-stars" aria-label="5/5">★★★★★</div>
+          <p class="tst-quote" data-testimonial="1"></p>
+          <div class="tst-foot">
+            <span class="tst-avatar a1" aria-hidden="true">M</span>
+            <div>
+              <div class="tst-name">Marina</div>
+              <div class="tst-meta">House &amp; pet sitting · Vinko · Barcelona, España</div>
+            </div>
+          </div>
+        </article>
+        <article class="tst-card reveal">
+          <div class="tst-stars" aria-label="5/5">★★★★★</div>
+          <p class="tst-quote" data-testimonial="2"></p>
+          <div class="tst-foot">
+            <span class="tst-avatar a2" aria-hidden="true">D</span>
+            <div>
+              <div class="tst-name">Deborah</div>
+              <div class="tst-meta">House &amp; pet sitting · 1 mes · Jimena de la Frontera</div>
+            </div>
+          </div>
+        </article>
+        <article class="tst-card reveal">
+          <div class="tst-stars" aria-label="5/5">★★★★★</div>
+          <p class="tst-quote" data-testimonial="3"></p>
+          <div class="tst-foot">
+            <span class="tst-avatar a3" aria-hidden="true">J</span>
+            <div>
+              <div class="tst-name">JM</div>
+              <div class="tst-meta">Cat sitting · Maru · Sevenoaks, UK</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section class="gal section" id="gallery">
+    <div class="wrap">
+      <div class="gal-head reveal">
+        <div class="txt">
+          <p class="kicker" data-i18n="gal.kicker">El día a día</p>
+          <h2 class="display" data-i18n="gal.title">Momentos de sits anteriores.</h2>
+          <p data-i18n="gal.lead">Casas que cuidamos, animales que querremos siempre.</p>
+        </div>
+        <a class="link-arrow" href="/galeria"><span data-i18n="gal.cta">Ver la galería completa</span> <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+      <div class="masonry reveal">
+        <img class="gal-1" src="assets/photos/dog-sofa.jpg" data-i18n-attr="alt:gal.s1" alt="Perro en el sofá" loading="lazy" decoding="async" />
+        <img class="gal-2" src="assets/photos/cat-window.jpg" data-i18n-attr="alt:gal.s2" alt="Gato junto a la ventana" loading="lazy" decoding="async" />
+        <img class="gal-3" src="assets/photos/garden-care.jpg" data-i18n-attr="alt:gal.s3" alt="Casa al cuidado" loading="lazy" decoding="async" />
+        <img class="gal-4" src="assets/photos/morning-walk.jpg" data-i18n-attr="alt:gal.s4" alt="Paseo de mañana" loading="lazy" decoding="async" />
+        <img class="gal-5" src="assets/photos/cuddle.jpg" data-i18n-attr="alt:gal.s5" alt="Momento de mimos" loading="lazy" decoding="async" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOST REVIEWS ============ -->
+  <section class="hr section" id="host-reviews">
+    <div class="wrap">
+      <div class="hr-head reveal">
+        <p class="kicker" data-i18n="hr.kicker">Reseñas verificadas</p>
+        <h2 class="display" data-i18n="hr.title">5/5 en cada estancia que hemos cuidado.</h2>
+        <p class="hr-intro" data-i18n="hr.intro">Reseñas reales de anfitriones que nos confiaron su casa y sus animales.</p>
+      </div>
+      <div class="hr-grid">
+        <article class="hr-card reveal">
+          <span class="hr-verified"><span class="check" aria-hidden="true">✓</span><span data-i18n="hr.verified">Reseña verificada</span></span>
+          <div class="hr-stars" aria-label="5/5">★★★★★</div>
+          <p class="hr-quote">“Communication was excellent from the beginning. Vinko was happy, and the house was spotless on our return.”</p>
+          <p class="hr-meta"><b>Marina</b><span>Barcelona, España</span></p>
+        </article>
+        <article class="hr-card reveal">
+          <span class="hr-verified"><span class="check" aria-hidden="true">✓</span><span data-i18n="hr.verified">Reseña verificada</span></span>
+          <div class="hr-stars" aria-label="5/5">★★★★★</div>
+          <p class="hr-quote">“Great care of our little dog, photo updates almost every day. We came home to a clean house — and even a baked cake!”</p>
+          <p class="hr-meta"><b>Deborah</b><span>Jimena de la Frontera</span></p>
+        </article>
+        <article class="hr-card reveal">
+          <span class="hr-verified"><span class="check" aria-hidden="true">✓</span><span data-i18n="hr.verified">Reseña verificada</span></span>
+          <div class="hr-stars" aria-label="5/5">★★★★★</div>
+          <p class="hr-quote">“Daily updates and a detailed diary. Incredibly observant, with genuine love for animals. The house was left in tip top condition.”</p>
+          <p class="hr-meta"><b>JM</b><span>Sevenoaks, UK</span></p>
+        </article>
+      </div>
+      <div class="hr-actions reveal">
+        <a class="btn btn-primary" href="/reviews" data-i18n="hr.readall">Leer todas las reseñas</a>
+        <a class="btn btn-ghost" href="/contacto" data-i18n="hr.leave">Dejar una reseña</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section class="final" id="contact-cta">
+    <div class="wrap">
+      <div class="final-panel reveal">
+        <div class="inner">
+          <h2 data-i18n="cta.title">Hablemos antes de que hagas las maletas.</h2>
+          <p data-i18n="cta.lead">Una videollamada gratis de 20 minutos para conocernos.</p>
+          <a class="btn btn-accent" href="/contacto" data-i18n="cta.btn">Agendar videollamada gratuita</a>
+          <span class="final-note" data-i18n="cta.note">Respondemos en menos de 24 h · Español e inglés</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="/">
+          <img src="assets/logo.png" alt="Lululau Pets" width="44" height="44" />
+          <span class="brand-name"><b>Lululau</b> <span>Pets</span></span>
+        </a>
+        <p data-i18n="foot.tagline">Tu casa y tus mascotas, en las mejores manos.</p>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="foot.nav">Navegación</h4>
+        <a href="/" data-i18n="nav.home">Inicio</a>
+        <a href="/nosotros" data-i18n="nav.about">Nosotros</a>
+        <a href="/servicios" data-i18n="nav.services">Servicios</a>
+        <a href="/galeria" data-i18n="nav.gallery">Galería</a>
+        <a href="/reviews" data-i18n="nav.reviews">Reseñas</a>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="foot.contact">Contacto</h4>
+        <a href="/contacto" data-i18n="nav.contact">Contacto</a>
+        <a href="mailto:contact@lululaupets.com" data-i18n="foot.email">contact@lululaupets.com</a>
+        <a href="https://wa.me/34633032738" target="_blank" rel="noopener">+34 633 032 738</a>
+        <a href="https://maps.google.com/?q=El+Médano,+Tenerife,+Canarias" target="_blank" rel="noopener" data-i18n="foot.location">El Médano, Tenerife</a>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="foot.follow">Síguenos</h4>
+        <a href="https://www.instagram.com/lululau.pets" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.lululaupets.com" target="_blank" rel="noopener">lululaupets.com</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Lululau Pets · <span data-i18n="foot.rights">Todos los derechos reservados.</span></span>
+      <span data-i18n="foot.made">Hecho con cariño por Luz y Lautaro.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/i18n.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

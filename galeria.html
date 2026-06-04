@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="es" data-title-key="ga.meta.title" data-desc-key="ga.meta.desc">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Galería de viajes — Lululau Pets | House & Pet Sitting</title>
+<meta name="description" content="Más de 28 sits en Australia, España, UK, Andorra y Portugal. Fotos reales, hosts verificados y reseñas de 5 estrellas en TrustedHousesitters." />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+<meta property="og:title" content="Galería — Lululau Pets" />
+<meta property="og:description" content="Viajes, mascotas y casas cuidadas con amor en 6 países." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="assets/logo.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="assets/base.css" />
+
+<style>
+/* ============================================================
+   GALERÍA — page-specific
+   ============================================================ */
+
+/* HERO */
+.ga-hero { position: relative; overflow: hidden; }
+.ga-hero .wrap { padding-top: clamp(40px, 6vw, 76px); padding-bottom: clamp(24px, 3.5vw, 40px); }
+.ga-hero h1 { font-size: clamp(44px, 7vw, 86px); line-height: 1.12; margin: var(--space-4) 0 var(--space-5); padding-bottom: 0.06em; }
+.ga-hero .lead { font-family: var(--font-display); font-size: clamp(20px, 2.4vw, 30px); color: var(--color-text-muted); max-width: 24ch; line-height: 1.2; }
+
+/* FILTERS */
+.ga-filters-wrap { position: sticky; top: 71px; z-index: 40; background: oklch(0.96 0.008 75 / 0.82); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-border); }
+.ga-filters { display: flex; gap: 8px; padding-block: 14px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.ga-filters::-webkit-scrollbar { display: none; }
+.ga-filter {
+  flex: 0 0 auto; scroll-snap-align: start;
+  font-size: 15px; font-weight: 700; letter-spacing: 0.01em;
+  padding: 10px 20px; border-radius: 999px;
+  border: 1.5px solid var(--color-border); background: var(--color-surface);
+  color: var(--color-text-muted); min-height: 44px;
+  transition: color var(--t), background var(--t), border-color var(--t);
+}
+.ga-filter:hover { color: var(--color-text); border-color: var(--color-text); }
+.ga-filter.is-active { background: var(--color-primary-deep); color: #fff; border-color: var(--color-primary-deep); }
+
+/* ALBUM */
+.ga-albums { display: flex; flex-direction: column; gap: clamp(48px, 7vw, 96px); }
+.ga-album { scroll-margin-top: 140px; }
+.ga-album-head { position: relative; padding-left: clamp(16px, 2vw, 22px); margin-bottom: clamp(20px, 2.6vw, 32px); }
+.ga-album-head::before { content: ""; position: absolute; left: 0; top: 4px; bottom: 4px; width: 5px; border-radius: 5px; background: var(--accent, var(--color-primary)); }
+.ga-album-loc { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.ga-flag { font-size: clamp(28px, 3.4vw, 40px); line-height: 1; }
+.ga-album-head h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(26px, 3.2vw, 42px); line-height: 1.08; }
+.ga-album-head h2 .city { color: var(--color-text); }
+.ga-album-head h2 .country { color: var(--color-text-muted); }
+.ga-album-meta { display: flex; align-items: center; gap: 10px 16px; flex-wrap: wrap; margin-top: 10px; font-size: 14.5px; color: var(--color-text-muted); }
+.ga-album-meta .dates { font-weight: 700; color: var(--color-text); }
+.ga-chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 999px; background: var(--color-surface); border: 1px solid var(--color-border); font-size: 13px; font-weight: 600; color: var(--color-text); }
+.ga-chip .lbl { color: var(--color-text-muted); font-weight: 500; }
+
+/* current badge — pulsing */
+.ga-current { display: inline-flex; align-items: center; gap: 8px; padding: 5px 14px; border-radius: 999px; background: var(--accent, var(--color-accent)); color: #2a2420; font-size: 13px; font-weight: 700; position: relative; }
+.ga-current .dot { width: 8px; height: 8px; border-radius: 50%; background: #2a2420; position: relative; }
+.ga-current .dot::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid #2a2420; opacity: 0; animation: gapulse 1.8s var(--ease) infinite; }
+@keyframes gapulse { 0% { transform: scale(0.7); opacity: 0.8; } 100% { transform: scale(2.2); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .ga-current .dot::after { animation: none; } }
+
+/* SITTING PROOF BANNER */
+.ga-proof { position: relative; border-radius: var(--r-xl); overflow: hidden; margin-bottom: clamp(16px, 2vw, 24px); box-shadow: var(--shadow-md); background: var(--color-surface); aspect-ratio: 21 / 9; }
+.ga-proof img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ga-proof-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: clamp(20px, 3vw, 36px); background: linear-gradient(to top, oklch(0.2 0.02 60 / 0.78) 0%, oklch(0.2 0.02 60 / 0.2) 45%, transparent 75%); color: #fff; }
+.ga-proof-badge { position: absolute; top: 16px; right: 16px; display: inline-flex; align-items: center; gap: 7px; padding: 7px 14px; border-radius: 999px; background: oklch(0.55 0.09 180); color: #fff; font-size: 13px; font-weight: 700; box-shadow: var(--shadow-sm); }
+.ga-proof-host { font-family: var(--font-display); font-size: clamp(24px, 3vw, 36px); line-height: 1; }
+.ga-proof-sub { margin-top: 8px; font-size: 14.5px; opacity: 0.92; display: flex; gap: 8px 14px; flex-wrap: wrap; }
+.ga-proof-sub .pets { font-weight: 700; }
+
+/* PHOTO GRID (masonry) */
+.ga-grid { columns: 3 240px; column-gap: clamp(12px, 1.5vw, 18px); }
+.ga-tile { display: block; width: 100%; break-inside: avoid; margin-bottom: clamp(12px, 1.5vw, 18px); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-sm); cursor: pointer; padding: 0; border: none; background: var(--color-surface); position: relative; }
+.ga-tile img { width: 100%; height: auto; display: block; transition: transform var(--t); }
+.ga-tile:hover img { transform: scale(1.04); }
+.ga-tile:hover { box-shadow: var(--shadow-md); }
+.ga-tile.is-fail, .ga-tile.is-pending { aspect-ratio: 4 / 3; display: grid; place-items: center; cursor: default; background: repeating-linear-gradient(135deg, oklch(0.9 0.012 75) 0 12px, oklch(0.92 0.012 75) 12px 24px); }
+.ga-tile.is-fail .em, .ga-tile.is-pending .em { font-size: 40px; opacity: 0.5; }
+.ga-tile.is-pending { cursor: default; }
+
+/* COMING SOON block */
+.ga-soon { display: grid; place-items: center; gap: 12px; padding: clamp(40px, 6vw, 72px); border-radius: var(--r-xl); background: repeating-linear-gradient(135deg, oklch(0.9 0.012 75) 0 14px, oklch(0.925 0.012 75) 14px 28px); border: 1px solid var(--color-border); text-align: center; }
+.ga-soon .em { font-size: clamp(40px, 5vw, 60px); opacity: 0.6; }
+.ga-soon p { font-family: var(--font-display); font-size: clamp(19px, 2vw, 24px); color: var(--color-text-muted); }
+
+/* MINI REVIEW */
+.ga-review { margin-top: clamp(18px, 2.2vw, 28px); padding: clamp(20px, 2.6vw, 30px); background: var(--color-surface); border: 1px solid var(--color-border); border-left: 4px solid var(--accent, var(--color-primary)); border-radius: var(--r-lg); }
+.ga-review blockquote { font-family: var(--font-display); font-size: clamp(18px, 1.9vw, 23px); line-height: 1.4; color: var(--color-text); margin: 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.ga-review.open blockquote { -webkit-line-clamp: unset; }
+.ga-review-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: var(--space-4); }
+.ga-review-more { font-size: 13.5px; font-weight: 700; color: var(--color-primary-deep); }
+.ga-review-host { font-size: 14px; font-weight: 700; color: var(--color-text-muted); }
+.ga-review-host::before { content: "— "; }
+
+/* LIGHTBOX */
+.ga-lb { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; background: oklch(0.16 0.015 60 / 0.92); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); padding: clamp(16px, 4vw, 48px); }
+.ga-lb.show { display: flex; animation: galbin 0.25s var(--ease) both; }
+@keyframes galbin { from { opacity: 0; } to { opacity: 1; } }
+.ga-lb-img { max-width: 100%; max-height: 100%; border-radius: var(--r-md); box-shadow: var(--shadow-lg); object-fit: contain; }
+.ga-lb-fail { display: grid; place-items: center; gap: 14px; color: #fff; font-family: var(--font-display); }
+.ga-lb-fail .em { font-size: 72px; }
+.ga-lb-btn { position: absolute; background: oklch(0.98 0.008 80 / 0.16); color: #fff; border-radius: 50%; width: 52px; height: 52px; display: grid; place-items: center; font-size: 24px; transition: background var(--t), transform var(--t); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+.ga-lb-btn:hover { background: oklch(0.98 0.008 80 / 0.3); }
+.ga-lb-close { top: clamp(16px, 3vw, 28px); right: clamp(16px, 3vw, 28px); }
+.ga-lb-prev { left: clamp(10px, 2vw, 28px); }
+.ga-lb-next { right: clamp(10px, 2vw, 28px); }
+.ga-lb-prev:hover { transform: translateX(-3px); }
+.ga-lb-next:hover { transform: translateX(3px); }
+.ga-lb-count { position: absolute; bottom: clamp(16px, 3vw, 28px); left: 50%; transform: translateX(-50%); color: #fff; font-size: 14px; font-weight: 600; background: oklch(0.16 0.015 60 / 0.5); padding: 6px 14px; border-radius: 999px; }
+
+.ga-empty { text-align: center; padding: clamp(48px, 8vw, 96px) 0; color: var(--color-text-muted); font-family: var(--font-display); font-size: clamp(20px, 2.4vw, 28px); }
+
+@media (max-width: 720px) {
+  .ga-grid { columns: 2 140px; }
+  .ga-proof { aspect-ratio: 4 / 3; }
+  .ga-lb-btn { width: 46px; height: 46px; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main" data-i18n="nav.skip">Saltar al contenido</a>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <div class="nav-inner">
+      <a class="brand" href="/" aria-label="Lululau Pets">
+        <img src="assets/logo.png" alt="Lululau Pets — perro y gato ilustrados" />
+        <span class="brand-name"><b>Lululau</b> <span>Pets</span></span>
+      </a>
+
+      <nav class="nav-links" aria-label="Principal">
+        <a href="/" data-i18n="nav.home">Inicio</a>
+        <a href="/nosotros" data-i18n="nav.about">Nosotros</a>
+        <a href="/servicios" data-i18n="nav.services">Servicios</a>
+        <a href="/galeria" data-i18n="nav.gallery" aria-current="page">Galería</a>
+        <a href="/reviews" data-i18n="nav.reviews">Reseñas</a>
+        <a href="/contacto" data-i18n="nav.contact">Contacto</a>
+      </nav>
+
+      <div class="nav-right">
+        <div class="langs" role="group" aria-label="Language">
+          <button type="button" data-lang="es" aria-pressed="true">ES</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+          <button type="button" data-lang="de" aria-pressed="false">DE</button>
+          <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+        </div>
+        <a class="btn btn-primary nav-cta" href="/contacto" data-i18n="nav.write">Escríbenos</a>
+        <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-inner">
+        <a href="/" data-i18n="nav.home">Inicio</a>
+        <a href="/nosotros" data-i18n="nav.about">Nosotros</a>
+        <a href="/servicios" data-i18n="nav.services">Servicios</a>
+        <a href="/galeria" data-i18n="nav.gallery">Galería</a>
+        <a href="/reviews" data-i18n="nav.reviews">Reseñas</a>
+        <a href="/contacto" data-i18n="nav.contact">Contacto</a>
+        <a class="btn btn-primary" href="/contacto" data-i18n="nav.cta">Agendar videollamada</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="ga-hero">
+    <div class="wrap">
+      <p class="kicker" data-i18n="ga.h.kicker">Galería</p>
+      <h1 class="display" data-i18n="ga.h.title">Nuestros viajes</h1>
+      <p class="lead" data-i18n="ga.h.sub">Cada casa, una historia. Cada mascota, una familia.</p>
+    </div>
+  </section>
+
+  <!-- ============ FILTERS ============ -->
+  <div class="ga-filters-wrap">
+    <div class="wrap">
+      <div class="ga-filters" id="ga-filters" role="tablist" aria-label="Filtrar por año"></div>
+    </div>
+  </div>
+
+  <!-- ============ ALBUMS ============ -->
+  <section class="section" style="padding-top: clamp(40px,5vw,64px);">
+    <div class="wrap">
+      <div class="ga-albums" id="ga-albums"></div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ LIGHTBOX ============ -->
+<div class="ga-lb" id="ga-lb" role="dialog" aria-modal="true" aria-label="Galería de fotos">
+  <button class="ga-lb-btn ga-lb-close" id="ga-lb-close" aria-label="Cerrar">✕</button>
+  <button class="ga-lb-btn ga-lb-prev" id="ga-lb-prev" aria-label="Anterior">‹</button>
+  <img class="ga-lb-img" id="ga-lb-img" alt="" />
+  <button class="ga-lb-btn ga-lb-next" id="ga-lb-next" aria-label="Siguiente">›</button>
+  <div class="ga-lb-count" id="ga-lb-count"></div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="/">
+          <img src="assets/logo.png" alt="Lululau Pets" width="44" height="44" />
+          <span class="brand-name"><b>Lululau</b> <span>Pets</span></span>
+        </a>
+        <p data-i18n="foot.tagline">Tu casa y tus mascotas, en las mejores manos.</p>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="foot.nav">Navegación</h4>
+        <a href="/" data-i18n="nav.home">Inicio</a>
+        <a href="/nosotros" data-i18n="nav.about">Nosotros</a>
+        <a href="/servicios" data-i18n="nav.services">Servicios</a>
+        <a href="/galeria" data-i18n="nav.gallery">Galería</a>
+        <a href="/reviews" data-i18n="nav.reviews">Reseñas</a>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="foot.contact">Contacto</h4>
+        <a href="/contacto" data-i18n="nav.contact">Contacto</a>
+        <a href="mailto:contact@lululaupets.com" data-i18n="foot.email">contact@lululaupets.com</a>
+        <a href="https://wa.me/34633032738" target="_blank" rel="noopener">+34 633 032 738</a>
+        <a href="https://maps.google.com/?q=El+Médano,+Tenerife,+Canarias" target="_blank" rel="noopener" data-i18n="foot.location">El Médano, Tenerife</a>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="foot.follow">Síguenos</h4>
+        <a href="https://www.instagram.com/lululau.pets" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.lululaupets.com" target="_blank" rel="noopener">lululaupets.com</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Lululau Pets · <span data-i18n="foot.rights">Todos los derechos reservados.</span></span>
+      <span data-i18n="foot.made">Hecho con cariño por Luz y Lautaro.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/i18n.js"></script>
+<script src="assets/app.js"></script>
+<script>
+/* ============================================================
+   LULULAU PETS — GALERÍA · datos de álbumes
+   Fotos en:  public/images/gallery/[folder]/[foto]
+   Edita GALLERY_BASE si tu ruta de despliegue es distinta.
+   ============================================================ */
+var GALLERY_BASE = "public/images/gallery/";
+
+var albums = [
+
+  // ── AUSTRALIA 2024 ──────────────────────────────────────────
+
+  {
+    id: "2024-03-melbourne",
+    year: 2024, month: 3,
+    flag: "🇦🇺", country: "Australia", city: "Melbourne",
+    host: "Akhil", pets: ["Bagheera"],
+    accentColor: "#00843D",
+    folder: "2024-04-australia",
+    photos: ["album-cover.jpeg", "01-bagheera-walking-lautaro.jpg", "02-bagheera-playing.jpeg", "03-bagheera-couch-lautaro.jpeg", "04-bagheera-walking-luz.jpeg"],
+    sittingProof: "sitting-proof.jpg",
+    review: "",
+    dates: "29 Mar - 07 Apr 2024"
+  },
+  {
+    id: "2024-04-tumbarumba",
+    year: 2024, month: 4,
+    flag: "🇦🇺", country: "Australia", city: "Tumbarumba",
+    host: "", pets: ["Zip", "Buttons", "Puss"],
+    accentColor: "#00843D",
+    folder: "",
+    photos: [],
+    sittingProof: null,
+    review: "",
+    dates: "08 Apr - 13 May 2024"
+  },
+  {
+    id: "2024-05-spring-farm",
+    year: 2024, month: 5,
+    flag: "🇦🇺", country: "Australia", city: "Spring Farm, NSW",
+    host: "Belinda", pets: ["Sebastian", "Sia", "Sadea"],
+    accentColor: "#00843D",
+    folder: "13-19 May 2024 — Australia, Spring Farm NSW— Belinda- Sebastian-Sia-Sadea",
+    photos: ["1-Sebastian.jpg"],
+    sittingProof: "sitting-proof.jpg",
+    review: "",
+    dates: "13-19 May 2024"
+  },
+  {
+    id: "2024-05-old-bar",
+    year: 2024, month: 5,
+    flag: "🇦🇺", country: "Australia", city: "Old Bar, NSW",
+    host: "Melissa", pets: ["Murray", "Inca"],
+    accentColor: "#00843D",
+    folder: "19-25 May 2024 — Australia-Old Bar NSW— Melissa-Murray-Inca",
+    photos: ["1-murray-inca.jpg"],
+    sittingProof: "sitting-proof.jpg",
+    review: "",
+    dates: "19-25 May 2024"
+  },
+  {
+    id: "2024-05-gold-coast-jenny",
+    year: 2024, month: 5,
+    flag: "🇦🇺", country: "Australia", city: "Gold Coast, QLD",
+    host: "Jenny", pets: ["Murray"],
+    accentColor: "#00843D",
+    folder: "27-may-05-jun-2024-Australia-Gold Coast-Jenny-Murray (perro)",
+    photos: [],
+    sittingProof: "sitting-proof.jpg",
+    review: "",
+    dates: "27 May - 05 Jun 2024"
+  },
+  {
+    id: "2024-05-tawonga",
+    year: 2024, month: 5,
+    flag: "🇦🇺", country: "Australia", city: "Tawonga",
+    host: "", pets: [],
+    accentColor: "#00843D",
+    folder: "",
+    photos: [],
+    sittingProof: null,
+    review: "",
+    dates: "19-25 May 2024"
+  },
+  {
+    id: "2024-06-brisbane-their",
+    year: 2024, month: 6,
+    flag: "🇦🇺", country: "Australia", city: "Brisbane, QLD",
+    host: "Their", pets: ["Gizmo"],
+    accentColor: "#00843D",
+    folder: "04-18-Jun-2024-Australia-Brisbane-Their-Gizmo (gato)",
+    photos: [],
+    sittingProof: "sitting-proof.jpg",
+    review: "",
+    dates: "04-18 Jun 2024"
+  },
+  {
+    id: "2024-06-brisbane-2",
+    year: 2024, month: 6,
+    flag: "🇦🇺", country: "Australia", city: "Brisbane",
+    host: "", pets: [],
+    accentColor: "#00843D",
+    folder: "",
+    photos: [],
+    sittingProof: null,
+    review: "",
+    dates: "18-19 Jun 2024"
+  },
+  {
+    id: "2024-06-brisbane-3",
+    year: 2024, month: 6,
+    flag: "🇦🇺", country: "Australia", city: "Brisbane",
+    host: "", pets: [],
+    accentColor: "#00843D",
+    folder: "",
+    photos: [],
+    sittingProof: null,
+    review: "",
+    dates: "19-26 Jun 2024"
+  },
+  {
+    id: "2024-06-brisbane-4",
+    year: 2024, month: 6,
+    flag: "🇦🇺", country: "Australia", city: "Brisbane",
+    host: "", pets: [],
+    accentColor: "#00843D",
+    folder: "",
+    photos: [],
+    sittingProof: null,
+    review: "",
+    dates: "26 Jun - 11 Jul 2024"
+  },
+  {
+    id: "2024-07-gold-coast",
+    year: 2024, month: 7,
+    flag: "🇦🇺", country: "Australia", city: "Gold Coast",
+    host: "", pets: [],
+    accentColor: "#00843D",
+    folder: "",
+    photos: [],
+    sittingProof: null,
+    review: "",
+    dates: "26 Jul - 04 Aug 2024"
+  },
+  {
+    id: "2024-08-coombabah",
+    year: 2024, month: 8,
+    flag: "🇦🇺", country: "Australia", city: "Coombabah, QLD",
+    host: "Stuart", pets: ["Obbi", "Shadow"],
+    accentColor: "#00843D",
+    folder: "",
+    photos: [],
+    sittingProof: null,
+    review: "",
+    dates: "04-09 Aug 2024"
+  },
+  {
+    id: "2024-08-gold-coast",
+    year: 2024, month: 8,
+    flag: "🇦🇺", country: "Australia", city: "Gold Coast",
+    host: "", pets: [],
+    accentColor: "#00843D",
+    folder: "",
+    photos: [],
+    sittingProof: null,
+    review: "",
+    dates: "10 Aug - 11 Sep 2024"
+  },
+  {
+    id: "2024-09-gold-coast-wendy",
+    year: 2024, month: 9,
+    flag: "🇦🇺", country: "Australia", city: "Gold Coast, QLD",
+    host: "Wendy", pets: ["Mishka"],
+    accentColor: "#00843D",
+    folder: "18 Sep-19 Oct 2024-Australia-Gold Coast-Wendy-Mishka",
+    photos: ["thumbnail.jpg", "01-Mishka-coucho-toys.jpg", "02-mishka-waiting-for-feed.jpg", "03-mishka-mimos-time.jpg"],
+    sittingProof: "sitting-proof.jpg",
+    review: "",
+    dates: "18 Sep - 19 Oct 2024"
+  },
+  {
+    id: "2024-10-gold-coast-julie",
+    year: 2024, month: 10,
+    flag: "🇦🇺", country: "Australia", city: "Gold Coast, QLD",
+    host: "Julie", pets: ["Teddy"],
+    accentColor: "#00843D",
+    folder: "11 Oct-01 Nov 2024-Australia-Gold Coast-Julie-Teddy",
+    photos: ["thumbnail.jpeg", "1-teddy-ready-for-a-walk.jpeg", "2-teddy-king-luz.jpeg", "3-teddy-couch-lautaro.jpeg"],
+    sittingProof: "sitting-proof.jpg",
+    review: "",
+    dates: "11 Oct - 01 Nov 2024"
+  },
+
+  // ── ESPAÑA ──────────────────────────────────────────────────
+
+  {
+    id: "2024-11-barcelona",
+    year: 2024, month: 11,
+    flag: "🇪🇸", country: "España", city: "Barcelona",
+    host: "Marina", pets: ["Vinko"],
+    accentColor: "#AA151B",
+    folder: "29-Nov-09-Dec-2024-Barcelona-España-Marina-Vinko",
+    photos: [],
+    sittingProof: "sitting-proof.jpg",
+    review: "Delighted to say that Luz and Lautaro are reliable and dedicated housesitters, and I would trust our Vinko as well as our home in their care any time! From the beginning communication was excellent with great first impression. During our vacations they sent frequent updates with photos, so I could see that Vinko is happy. They are warm and friendly people with loads of love for animals. On our return the house was spotless. We have nothing but warmly recommendation for them.",
+    dates: "29 Nov - 09 Dec 2024"
+  },
+  {
+    id: "2024-12-jimena",
+    year: 2024, month: 12,
+    flag: "🇪🇸", country: "España", city: "Jimena de la Frontera",
+    host: "Deborah", pets: ["Chichi"],
+    accentColor: "#AA151B",
+    folder: "15-Dec-24-16-Jan-25-Jimena de la Frontera-España-Chichi-Deborah",
+    photos: [],
+    sittingProof: "sitting-proof.jpg",
+    review: "Luz & Lautaro sat for us for a month and we feel so lucky they applied! They are a great couple, very responsive and nothing was too much trouble. They took great care of our little dog and we saw how happy she was with them as we had video and photo updates almost every day. Our dog is now missing them lots! We also came home to a nice clean house and freshly washed bedding, a godsend after travelling for 2 days, with an extra bonus of a delicious baked cake! Anyone who has these 2 to sit them can be assured they will take great care of your home and pets and we will definitely be reaching out to them for any future sits, if they will have us!",
+    dates: "15 Dec 24 - 16 Ene 25"
+  },
+  {
+    id: "2025-01-mojacar",
+    year: 2025, month: 1,
+    flag: "🇪🇸", country: "España", city: "Mojácar",
+    host: "Sally", pets: ["Rico", "Reeva"],
+    accentColor: "#AA151B",
+    folder: "30-Jan-25-Feb-2025-Mojácar-España-Sally-Rico-Reeva (perros)",
+    photos: [],
+    sittingProof: "sitting-proof.jpg",
+    review: "Luz and Lautaro where just amazing people and pet sitters the care and attention they put into caring for Rico and Reeva was just brilliant and also my home, I can't recommend them enough, first class, I would have no hesitation in picking them to care for your pets and home.",
+    dates: "30 Ene - 25 Feb 2025"
+  },
+
+  // ── ANDORRA ─────────────────────────────────────────────────
+
+  {
+    id: "2025-04-andorra",
+    year: 2025, month: 4,
+    flag: "🇦🇩", country: "Andorra", city: "Andorra la Vella",
+    host: "Leo", pets: ["Pitu", "Bau"],
+    accentColor: "#003DA5",
+    folder: "22-Apr-11-May-2025-Andorra-la-Vella-Andorra-Leo-Pitu-Bau (gatos)",
+    photos: [],
+    sittingProof: "sitting-proof.jpg",
+    review: "Lautaro and Luz were amazing sitters. They are a very sweet and caring couple. They sent regular updates on their life with my boys, and I could see Pitu and Bau were extremely comfortable with them. They spent a lot of quality time with them, playing and supervising their garden walks. The house was super clean on my return :) Super welcome to come back for a sit anytime they want!",
+    dates: "22 Abr - 11 May 2025"
+  },
+
+  // ── UK ──────────────────────────────────────────────────────
+
+  {
+    id: "2025-04-uk",
+    year: 2025, month: 4,
+    flag: "🇬🇧", country: "United Kingdom", city: "Sevenoaks",
+    host: "JM", pets: ["Maru"],
+    accentColor: "#012169",
+    folder: "04-19-Apr-2025-Sevenoaks-UK-JM-Maru (gata)",
+    photos: [],
+    sittingProof: "sitting-proof.jpg",
+    review: "I really couldn't have found two best sitters for my cat. Luz and Lautaro gave me daily updates with pictures and a detailed diary of what my cat has been up to. They even chopped some grass for Maru when it was too wet outside! I could tell they had got to know Maru very well by noticing how talkative he is and how much he likes to munch on grass. They are incredibly observant and have so much genuine love for taking care of animals. They were considerate guests and left the house in tip top condition. I cannot recommend this couple enough - your pets will be left in the best of care, to the point your pet might be disappointed you are back! Thank you so much Luz and Lautaro ❤️",
+    dates: "04-19 Abr 2025"
+  },
+
+  // ── ESPAÑA / PORTUGAL 2025 (próximamente) ───────────────────
+
+  {
+    id: "2025-05-santa-perpetua",
+    year: 2025, month: 5,
+    flag: "🇪🇸", country: "España", city: "Santa Perpètua de Mogoda",
+    host: "", pets: [],
+    accentColor: "#AA151B",
+    folder: "",
+    photos: [],
+    sittingProof: null,
+    review: "",
+    dates: "14-25 May 2025"
+  },
+  {
+    id: "2025-06-braga",
+    year: 2025, month: 6,
+    flag: "🇵🇹", country: "Portugal", city: "Braga",
+    host: "", pets: [],
+    accentColor: "#006600",
+    folder: "",
+    photos: [],
+    sittingProof: null,
+    review: "",
+    dates: "01-16 Jun 2025"
+  },
+  {
+    id: "2025-06-badalona",
+    year: 2025, month: 6,
+    flag: "🇪🇸", country: "España", city: "Badalona",
+    host: "", pets: [],
+    accentColor: "#AA151B",
+    folder: "",
+    photos: [],
+    sittingProof: null,
+    review: "",
+    dates: "19 Jun - 06 Jul 2025"
+  },
+  {
+    id: "2025-07-barcelona",
+    year: 2025, month: 7,
+    flag: "🇪🇸", country: "España", city: "Barcelona",
+    host: "", pets: [],
+    accentColor: "#AA151B",
+    folder: "",
+    photos: [],
+    sittingProof: null,
+    review: "",
+    dates: "07-14 Jul 2025"
+  },
+  {
+    id: "2025-07-barcelona-2",
+    year: 2025, month: 7,
+    flag: "🇪🇸", country: "España", city: "Barcelona",
+    host: "", pets: [],
+    accentColor: "#AA151B",
+    folder: "",
+    photos: [],
+    sittingProof: null,
+    review: "",
+    dates: "17 Jul - 03 Aug 2025"
+  },
+  {
+    id: "2025-08-badalona",
+    year: 2025, month: 8,
+    flag: "🇪🇸", country: "España", city: "Badalona",
+    host: "", pets: [],
+    accentColor: "#AA151B",
+    folder: "",
+    photos: [],
+    sittingProof: null,
+    review: "",
+    dates: "12-24 Aug 2025"
+  },
+  {
+    id: "2025-08-santa-perpetua",
+    year: 2025, month: 8,
+    flag: "🇪🇸", country: "España", city: "Santa Perpètua de Mogoda",
+    host: "", pets: [],
+    accentColor: "#AA151B",
+    folder: "",
+    photos: [],
+    sittingProof: null,
+    review: "",
+    dates: "25 Aug 25 - 15 Ene 26"
+  },
+
+  // ── CANARIAS — SIT ACTUAL ───────────────────────────────────
+
+  {
+    id: "2026-04-canarias",
+    year: 2026, month: 4,
+    flag: "🏝️", country: "Canarias", city: "El Médano, Tenerife",
+    host: "", pets: [],
+    accentColor: "#F7A800",
+    folder: "",
+    photos: [],
+    sittingProof: null,
+    review: "",
+    isCurrent: true,
+    dates: "Abril - Octubre 2026"
+  }
+
+];
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+(function () {
+  var T = function (k) { return (window.LululauI18n && window.LululauI18n.t) ? (window.LululauI18n.t(k) || k) : k; };
+  var albumsEl = document.getElementById("ga-albums");
+  var filtersEl = document.getElementById("ga-filters");
+  var activeYear = "all";
+
+  function esc(s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+  function photoURL(folder, file) {
+    return GALLERY_BASE + encodeURIComponent(folder) + "/" + encodeURIComponent(file);
+  }
+
+  // Sort: year DESC, month DESC
+  var sorted = albums.slice().sort(function (a, b) {
+    return (b.year - a.year) || (b.month - a.month);
+  });
+
+  // ---- Filters: "Todos" + unique years ascending ----
+  function buildFilters() {
+    var years = [];
+    albums.forEach(function (a) { if (years.indexOf(a.year) === -1) years.push(a.year); });
+    years.sort(function (a, b) { return a - b; });
+    filtersEl.innerHTML = "";
+    var mk = function (val, label) {
+      var b = document.createElement("button");
+      b.className = "ga-filter" + (String(val) === String(activeYear) ? " is-active" : "");
+      b.type = "button";
+      b.setAttribute("role", "tab");
+      b.textContent = label;
+      b.addEventListener("click", function () { activeYear = val; applyFilter(); });
+      return b;
+    };
+    filtersEl.appendChild(mk("all", T("ga.filter.all")));
+    years.forEach(function (y) { filtersEl.appendChild(mk(y, String(y))); });
+  }
+
+  function applyFilter() {
+    buildFilters();
+    var any = false;
+    document.querySelectorAll(".ga-album").forEach(function (el) {
+      var show = (activeYear === "all") || (el.getAttribute("data-year") === String(activeYear));
+      el.style.display = show ? "" : "none";
+      if (show) any = true;
+    });
+    var emptyEl = document.getElementById("ga-empty");
+    if (emptyEl) emptyEl.style.display = any ? "none" : "block";
+  }
+
+  // ---- Album markup ----
+  function albumHTML(a) {
+    var hasFolder = a.folder && a.folder.length > 0;
+    var hasPhotos = hasFolder && a.photos && a.photos.length > 0;
+    var accent = a.accentColor || "var(--color-primary)";
+
+    var html = '<article class="ga-album" data-year="' + a.year + '" id="' + esc(a.id) + '" style="--accent:' + esc(accent) + '">';
+
+    // ---- header ----
+    html += '<div class="ga-album-head">';
+    html += '<div class="ga-album-loc">';
+    html += '<span class="ga-flag" aria-hidden="true">' + a.flag + '</span>';
+    html += '<h2><span class="city">' + esc(a.city) + '</span> <span class="country">· ' + esc(a.country) + '</span></h2>';
+    html += '</div>'; // loc
+
+    html += '<div class="ga-album-meta">';
+    html += '<span class="dates">' + esc(a.dates) + '</span>';
+    if (a.host) html += '<span class="ga-chip"><span class="lbl">' + T("ga.host") + ':</span> ' + esc(a.host) + '</span>';
+    if (a.pets && a.pets.length) html += '<span class="ga-chip">🐾 ' + esc(a.pets.join(" · ")) + '</span>';
+    if (a.isCurrent) {
+      html += '<span class="ga-current"><span class="dot" aria-hidden="true"></span>' + T("ga.current") + ' 🏡</span>';
+    }
+    html += '</div>'; // meta
+    html += '</div>'; // head
+
+    // ---- sitting proof banner (hidden until its image is confirmed to load) ----
+    if (a.sittingProof) {
+      var proofURL = photoURL(a.folder, a.sittingProof);
+      html += '<div class="ga-proof" data-proof-src="' + esc(proofURL) + '" style="display:none">';
+      html += '<span class="ga-proof-badge">✓ ' + T("ga.verified") + '</span>';
+      html += '<div class="ga-proof-overlay">';
+      if (a.host) html += '<div class="ga-proof-host">' + esc(a.host) + '</div>';
+      html += '<div class="ga-proof-sub">';
+      html += '<span>' + esc(a.city) + ' · ' + esc(a.country) + '</span>';
+      html += '<span>' + esc(a.dates) + '</span>';
+      if (a.pets && a.pets.length) html += '<span class="pets">🐾 ' + esc(a.pets.join(" · ")) + '</span>';
+      html += '</div></div></div>';
+    }
+
+    // ---- photo grid OR coming-soon ----
+    if (hasPhotos) {
+      html += '<div class="ga-grid" data-album="' + esc(a.id) + '">';
+      a.photos.forEach(function (file, i) {
+        var url = photoURL(a.folder, file);
+        html += '<button class="ga-tile is-pending" type="button" data-flag="' + a.flag + '" data-idx="' + i + '" data-album="' + esc(a.id) + '" data-src="' + esc(url) + '" aria-label="' + esc(a.city) + ' ' + (i + 1) + '">';
+        html += '<span class="em" aria-hidden="true">' + a.flag + '</span>';
+        html += '</button>';
+      });
+      html += '</div>';
+    } else {
+      html += '<div class="ga-soon"><span class="em" aria-hidden="true">' + a.flag + '</span><p>' + T("ga.soon") + '</p></div>';
+    }
+
+    // ---- mini review ----
+    if (a.review && a.review.length) {
+      html += '<div class="ga-review">';
+      html += '<blockquote>“' + esc(a.review) + '”</blockquote>';
+      html += '<div class="ga-review-foot">';
+      html += '<button type="button" class="ga-review-more" data-more aria-expanded="false">+ ' + esc(T("ga.host")) + '</button>';
+      html += a.host ? '<span class="ga-review-host">' + esc(a.host) + '</span>' : '<span></span>';
+      html += '</div></div>';
+    }
+
+    html += '</article>';
+    return html;
+  }
+
+  var loadedURLs = {}; // url -> true once confirmed loadable
+
+  function render() {
+    var html = sorted.map(albumHTML).join("");
+    html += '<div class="ga-empty" id="ga-empty" style="display:none">' + T("ga.empty") + '</div>';
+    albumsEl.innerHTML = html;
+    upgradeImages();
+    wireReviews();
+    wireLightbox();
+    applyFilter();
+  }
+
+  // Probe each image with a detached Image(); only swap in <img> on success,
+  // otherwise leave the flag-emoji fallback. No broken images, no document 404s.
+  function upgradeImages() {
+    document.querySelectorAll(".ga-tile.is-pending").forEach(function (tile) {
+      var url = tile.getAttribute("data-src");
+      var probe = new Image();
+      probe.onload = function () {
+        loadedURLs[url] = true;
+        tile.classList.remove("is-pending");
+        tile.innerHTML = '<img alt="" src="' + url + '" />';
+      };
+      probe.onerror = function () {
+        tile.classList.remove("is-pending");
+        tile.classList.add("is-fail");
+      };
+      probe.src = url;
+    });
+    document.querySelectorAll(".ga-proof[data-proof-src]").forEach(function (box) {
+      var url = box.getAttribute("data-proof-src");
+      var probe = new Image();
+      probe.onload = function () {
+        var img = document.createElement("img");
+        img.src = url; img.alt = "";
+        box.insertBefore(img, box.firstChild);
+        box.style.display = "";
+      };
+      probe.src = url; // stays hidden on error
+    });
+  }
+
+  // ---- "read more" toggle on long reviews ----
+  function wireReviews() {
+    document.querySelectorAll(".ga-review").forEach(function (box) {
+      var bq = box.querySelector("blockquote");
+      var btn = box.querySelector("[data-more]");
+      if (!btn) return;
+      // Only show the toggle if text is actually clamped
+      var clamped = bq.scrollHeight - bq.clientHeight > 4;
+      if (!clamped) { btn.style.display = "none"; return; }
+      btn.textContent = "+ " + readMoreLabel();
+      btn.addEventListener("click", function () {
+        var open = box.classList.toggle("open");
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+        btn.textContent = (open ? "− " : "+ ") + readMoreLabel();
+      });
+    });
+  }
+  function readMoreLabel() {
+    var l = window.LululauI18n ? window.LululauI18n.getLang() : "es";
+    return { es: "Leer más", en: "Read more", de: "Mehr lesen", fr: "Lire plus" }[l] || "Leer más";
+  }
+
+  /* ============ LIGHTBOX ============ */
+  var lb = document.getElementById("ga-lb");
+  var lbImg = document.getElementById("ga-lb-img");
+  var lbCount = document.getElementById("ga-lb-count");
+  var curList = [];   // [{url}]
+  var curIdx = 0;
+
+  function openLB(list, idx) {
+    curList = list; curIdx = idx;
+    showLB();
+    lb.classList.add("show");
+    document.body.style.overflow = "hidden";
+    document.getElementById("ga-lb-close").focus();
+  }
+  function showLB() {
+    var item = curList[curIdx];
+    if (!item) return;
+    lbImg.style.display = "";
+    lbImg.src = item.url;
+    lbImg.onerror = function () {
+      lbImg.style.display = "none";
+      // (rare) show a flag placeholder instead of broken image
+      lbCount.textContent = (curIdx + 1) + " / " + curList.length;
+    };
+    lbCount.textContent = (curIdx + 1) + " / " + curList.length;
+  }
+  function closeLB() { lb.classList.remove("show"); document.body.style.overflow = ""; }
+  function nav(d) { curIdx = (curIdx + d + curList.length) % curList.length; showLB(); }
+
+  function wireLightbox() {
+    document.querySelectorAll(".ga-tile").forEach(function (tile) {
+      tile.addEventListener("click", function () {
+        if (tile.classList.contains("is-fail") || tile.classList.contains("is-pending")) return;
+        var albumId = tile.getAttribute("data-album");
+        var a = albums.filter(function (x) { return x.id === albumId; })[0];
+        if (!a) return;
+        // Only include photos confirmed to load
+        var list = a.photos
+          .map(function (f) { return { url: photoURL(a.folder, f) }; })
+          .filter(function (it) { return loadedURLs[it.url]; });
+        if (!list.length) return;
+        var clickedURL = tile.querySelector("img") ? tile.querySelector("img").getAttribute("src") : "";
+        var idx = 0;
+        list.forEach(function (it, i) { if (it.url === clickedURL) idx = i; });
+        openLB(list, idx);
+      });
+    });
+  }
+
+  document.getElementById("ga-lb-close").addEventListener("click", closeLB);
+  document.getElementById("ga-lb-prev").addEventListener("click", function (e) { e.stopPropagation(); nav(-1); });
+  document.getElementById("ga-lb-next").addEventListener("click", function (e) { e.stopPropagation(); nav(1); });
+  lb.addEventListener("click", function (e) { if (e.target === lb) closeLB(); });
+  document.addEventListener("keydown", function (e) {
+    if (!lb.classList.contains("show")) return;
+    if (e.key === "Escape") closeLB();
+    else if (e.key === "ArrowLeft") nav(-1);
+    else if (e.key === "ArrowRight") nav(1);
+  });
+
+  // Re-render labels on language change (filters, badges, soon, etc.)
+  document.addEventListener("lululau:lang", function () { render(); });
+
+  render();
+})();
+</script>
+</body>
+</html>

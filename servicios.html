@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es" data-title-key="sp.meta.title" data-desc-key="sp.meta.desc">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Servicios — Lululau Pets</title>
+<meta name="description" content="Pet sitting y house care con Luz y Lautaro: qué incluye cada servicio, cómo funciona, precios orientativos y preguntas frecuentes." />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+<meta property="og:title" content="Servicios — Lululau Pets" />
+<meta property="og:description" content="Pet sitting y house care con la misma dedicación." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="assets/logo.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="assets/base.css" />
+
+<style>
+/* ============================================================
+   SERVICIOS — page-specific
+   ============================================================ */
+
+/* Photo placeholder blocks (solid color + [Foto: …] marker) */
+.sp-photo {
+  position: relative; display: grid; place-items: center;
+  border-radius: var(--r-xl); overflow: hidden; min-height: 100%;
+  padding: var(--space-8);
+}
+.sp-photo span {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  font-size: 13px; letter-spacing: 0.04em; text-align: center;
+  padding: 8px 14px; border-radius: 999px;
+}
+.sp-photo.teal { background: var(--color-primary); }
+.sp-photo.teal span { color: #fff; background: oklch(1 0 0 / 0.18); }
+.sp-photo.orange { background: var(--color-accent); }
+.sp-photo.orange span { color: #2a2420; background: oklch(1 0 0 / 0.32); }
+
+/* SHORT HERO */
+.sp-hero { position: relative; }
+.sp-hero .wrap { padding-top: clamp(40px, 6vw, 72px); padding-bottom: clamp(32px, 4vw, 56px); }
+.sp-hero h1 { font-size: clamp(36px, 5vw, 64px); line-height: 1.16; margin: var(--space-6) 0 var(--space-8); max-width: 18ch; }
+.sp-hero .lead { font-size: clamp(17px, 1.1rem + 0.3vw, 21px); color: var(--color-text-muted); max-width: 52ch; }
+.sp-jump { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-8); }
+.sp-chip {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 11px 18px; border-radius: 999px;
+  border: 1.5px solid var(--color-border); background: var(--color-surface);
+  font-weight: 600; font-size: 15px; transition: border-color var(--t), transform var(--t);
+}
+.sp-chip:hover { border-color: var(--color-text); transform: translateY(-2px); }
+.sp-chip .d { width: 10px; height: 10px; border-radius: 50%; }
+.sp-chip .d.teal { background: var(--color-primary); }
+.sp-chip .d.orange { background: var(--color-accent); }
+
+/* SERVICE ROWS */
+.sp-svc { scroll-margin-top: 96px; }
+.sp-svc.alt { background: var(--color-surface); border-block: 1px solid var(--color-border); }
+.sp-row { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+.sp-row.reverse .sp-media { order: -1; }
+.sp-media { align-self: stretch; min-height: 380px; }
+.sp-num { font-family: var(--font-display); font-size: clamp(15px, 1.4vw, 17px); letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-accent-deep); }
+.sp-svc h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(34px, 4.4vw, 56px); line-height: 1; margin: var(--space-3) 0 var(--space-2); }
+.sp-tagline { font-size: clamp(17px, 1.6vw, 20px); color: var(--color-primary-deep); font-weight: 600; margin-bottom: var(--space-4); }
+.sp-svc.orange-accent .sp-tagline { color: var(--color-accent-deep); }
+.sp-desc { color: var(--color-text-muted); margin-bottom: var(--space-6); max-width: 46ch; }
+.sp-list { display: grid; gap: var(--space-3); }
+.sp-list li { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start; font-size: 15.5px; }
+.sp-list .tick { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: 12px; color: #fff; margin-top: 1px; background: var(--color-primary-deep); }
+.sp-svc.orange-accent .sp-list .tick { background: var(--color-accent-deep); }
+
+/* HOW IT WORKS */
+.sp-how-head { max-width: 620px; margin-bottom: clamp(36px, 4vw, 56px); }
+.sp-how-head h2 { font-size: clamp(32px, 3.8vw, 50px); margin-top: var(--space-4); }
+.sp-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(20px, 2.4vw, 32px); counter-reset: step; }
+.sp-step { position: relative; padding-top: var(--space-6); border-top: 2px solid var(--color-divider); }
+.sp-step .n { font-family: var(--font-display); font-size: clamp(40px, 4vw, 56px); line-height: 1; color: var(--color-primary); }
+.sp-step:nth-child(even) .n { color: var(--color-accent); }
+.sp-step h3 { font-family: var(--font-display); font-weight: 400; font-size: clamp(20px, 2vw, 25px); margin: var(--space-3) 0 var(--space-2); line-height: 1.1; }
+.sp-step p { font-size: 14.5px; color: var(--color-text-muted); }
+
+/* PRICING */
+.sp-price-head { max-width: 620px; margin-bottom: clamp(32px, 4vw, 48px); }
+.sp-price-head h2 { font-size: clamp(32px, 3.8vw, 50px); margin-top: var(--space-4); }
+.sp-price-head p { color: var(--color-text-muted); margin-top: var(--space-3); max-width: 54ch; }
+.sp-price-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 2.5vw, 28px); }
+.sp-price-card {
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--r-xl); padding: clamp(28px, 3.4vw, 40px);
+  display: flex; flex-direction: column;
+}
+.sp-price-card .ribbon { width: 56px; height: 6px; border-radius: 999px; margin-bottom: var(--space-6); }
+.sp-price-card.pet .ribbon { background: var(--color-primary); }
+.sp-price-card.house .ribbon { background: var(--color-accent); }
+.sp-price-card h3 { font-family: var(--font-display); font-weight: 400; font-size: clamp(26px, 2.8vw, 34px); margin-bottom: var(--space-2); }
+.sp-price-card .from { font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-text-muted); font-weight: 700; }
+.sp-price-card .amount { font-family: var(--font-display); font-size: clamp(46px, 5vw, 62px); line-height: 1; margin: 4px 0 2px; }
+.sp-price-card .unit { color: var(--color-text-muted); font-size: 15px; margin-bottom: var(--space-6); }
+.sp-price-card .feats { display: grid; gap: 10px; margin-top: auto; padding-top: var(--space-6); border-top: 1px solid var(--color-divider); }
+.sp-price-card .feats li { font-size: 14.5px; color: var(--color-text); padding-left: 22px; position: relative; }
+.sp-price-card .feats li::before { content: "✓"; position: absolute; left: 0; color: var(--color-primary-deep); font-weight: 700; }
+.sp-price-card.house .feats li::before { color: var(--color-accent-deep); }
+.sp-disclaimer { margin-top: clamp(24px, 3vw, 36px); padding: var(--space-6); border-radius: var(--r-lg); background: var(--color-surface); border: 1px dashed var(--color-border); display: flex; gap: 14px; align-items: flex-start; }
+.sp-disclaimer .i { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--color-primary-deep); color: #fff; display: grid; place-items: center; font-family: var(--font-display); font-size: 17px; }
+.sp-disclaimer p { font-size: 14.5px; color: var(--color-text-muted); max-width: 70ch; }
+
+/* FAQ */
+.sp-faq-head { max-width: 620px; margin-bottom: clamp(32px, 4vw, 48px); }
+.sp-faq-head h2 { font-size: clamp(32px, 3.8vw, 50px); margin-top: var(--space-4); }
+.faq { max-width: 880px; }
+.faq-item { border-top: 1px solid var(--color-border); }
+.faq-item:last-child { border-bottom: 1px solid var(--color-border); }
+.faq-q {
+  width: 100%; text-align: left; display: flex; align-items: center; gap: var(--space-4);
+  padding: clamp(18px, 2.2vw, 26px) 0; font-size: clamp(17px, 1.5vw, 20px);
+  font-weight: 600; color: var(--color-text); cursor: pointer;
+}
+.faq-q .faq-ico { margin-left: auto; flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid var(--color-border); display: grid; place-items: center; position: relative; transition: background var(--t), border-color var(--t); }
+.faq-q .faq-ico::before, .faq-q .faq-ico::after { content: ""; position: absolute; background: var(--color-text); border-radius: 2px; transition: transform var(--t), background var(--t); }
+.faq-q .faq-ico::before { width: 12px; height: 2px; }
+.faq-q .faq-ico::after { width: 2px; height: 12px; }
+.faq-q[aria-expanded="true"] .faq-ico { background: var(--color-primary-deep); border-color: var(--color-primary-deep); }
+.faq-q[aria-expanded="true"] .faq-ico::before, .faq-q[aria-expanded="true"] .faq-ico::after { background: #fff; }
+.faq-q[aria-expanded="true"] .faq-ico::after { transform: scaleY(0); }
+.faq-a { overflow: hidden; max-height: 0; transition: max-height 0.32s var(--ease); }
+.faq-a-inner { padding: 0 46px var(--space-6) 0; color: var(--color-text-muted); line-height: 1.6; }
+
+@media (max-width: 980px) {
+  .sp-row { grid-template-columns: 1fr; gap: var(--space-10); }
+  .sp-row.reverse .sp-media { order: 0; }
+  .sp-media { min-height: 280px; }
+  .sp-steps { grid-template-columns: 1fr 1fr; gap: var(--space-8); }
+  .sp-price-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 540px) {
+  .sp-steps { grid-template-columns: 1fr; }
+  .faq-a-inner { padding-right: 8px; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main" data-i18n="nav.skip">Saltar al contenido</a>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <div class="nav-inner">
+      <a class="brand" href="/" aria-label="Lululau Pets">
+        <img src="assets/logo.png" alt="Lululau Pets — perro y gato ilustrados" />
+        <span class="brand-name"><b>Lululau</b> <span>Pets</span></span>
+      </a>
+
+      <nav class="nav-links" aria-label="Principal">
+        <a href="/" data-i18n="nav.home">Inicio</a>
+        <a href="/nosotros" data-i18n="nav.about">Nosotros</a>
+        <a href="/servicios" data-i18n="nav.services" aria-current="page">Servicios</a>
+        <a href="/galeria" data-i18n="nav.gallery">Galería</a>
+        <a href="/reviews" data-i18n="nav.reviews">Reseñas</a>
+        <a href="/contacto" data-i18n="nav.contact">Contacto</a>
+      </nav>
+
+      <div class="nav-right">
+        <div class="langs" role="group" aria-label="Language">
+          <button type="button" data-lang="es" aria-pressed="true">ES</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+          <button type="button" data-lang="de" aria-pressed="false">DE</button>
+          <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+        </div>
+        <a class="btn btn-primary nav-cta" href="/contacto" data-i18n="nav.cta">Agendar videollamada</a>
+        <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-inner">
+        <a href="/" data-i18n="nav.home">Inicio</a>
+        <a href="/nosotros" data-i18n="nav.about">Nosotros</a>
+        <a href="/servicios" data-i18n="nav.services">Servicios</a>
+        <a href="/galeria" data-i18n="nav.gallery">Galería</a>
+        <a href="/reviews" data-i18n="nav.reviews">Reseñas</a>
+        <a href="/contacto" data-i18n="nav.contact">Contacto</a>
+        <a class="btn btn-primary" href="/contacto" data-i18n="nav.cta">Agendar videollamada</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ SHORT HERO ============ -->
+  <section class="sp-hero">
+    <div class="wrap">
+      <p class="kicker" data-i18n="sp.h.kicker">Servicios</p>
+      <h1 class="display" data-i18n="sp.h.title">Pet sitting y cuidado del hogar, con la misma dedicación.</h1>
+      <p class="lead" data-i18n="sp.h.lead">Dos servicios, una misma idea: que puedas viajar tranquilo sabiendo que tu casa y tus animales están en manos de alguien que de verdad se implica.</p>
+      <div class="sp-jump">
+        <a class="sp-chip" href="#pet-sitting"><span class="d teal" aria-hidden="true"></span><span data-i18n="svc.pet.t">Pet Sitting</span></a>
+        <a class="sp-chip" href="#house-care"><span class="d orange" aria-hidden="true"></span><span data-i18n="svc.house.t">House Care</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PET SITTING ============ -->
+  <section class="sp-svc alt section" id="pet-sitting">
+    <div class="wrap">
+      <div class="sp-row">
+        <div class="sp-text reveal">
+          <p class="sp-num" data-i18n="sp.pet.k">Servicio 01</p>
+          <h2 data-i18n="svc.pet.t">Pet Sitting</h2>
+          <p class="sp-tagline" data-i18n="sp.pet.lead">Cuidado de tus mascotas en su propio hogar.</p>
+          <p class="sp-desc" data-i18n="sp.pet.desc">Nos quedamos en tu casa para que tus animales mantengan su rutina, su territorio y su tranquilidad. Sin jaulas, sin guarderías, sin estrés.</p>
+          <ul class="sp-list">
+            <li><span class="tick" aria-hidden="true">✓</span><span data-i18n="sp.pet.l1">Paseos diarios y tiempo de juego adaptados a cada animal.</span></li>
+            <li><span class="tick" aria-hidden="true">✓</span><span data-i18n="sp.pet.l2">Comidas según su rutina y dietas especiales.</span></li>
+            <li><span class="tick" aria-hidden="true">✓</span><span data-i18n="sp.pet.l3">Administración de medicación, también inyectable.</span></li>
+            <li><span class="tick" aria-hidden="true">✓</span><span data-i18n="sp.pet.l4">Fotos y vídeos cada día por WhatsApp.</span></li>
+            <li><span class="tick" aria-hidden="true">✓</span><span data-i18n="sp.pet.l5">Limpieza de arenero, jaula o zona del animal.</span></li>
+            <li><span class="tick" aria-hidden="true">✓</span><span data-i18n="sp.pet.l6">Gestión de cualquier urgencia veterinaria.</span></li>
+          </ul>
+        </div>
+        <div class="sp-media reveal">
+          <div class="sp-photo teal"><span data-i18n="sp.pet.photo">[Foto: Luz con un perro en el sofá]</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOUSE CARE ============ -->
+  <section class="sp-svc orange-accent section" id="house-care">
+    <div class="wrap">
+      <div class="sp-row reverse">
+        <div class="sp-text reveal">
+          <p class="sp-num" data-i18n="sp.house.k">Servicio 02</p>
+          <h2 data-i18n="svc.house.t">House Care</h2>
+          <p class="sp-tagline" data-i18n="sp.house.lead">Tu casa habitada y cuidada mientras no estás.</p>
+          <p class="sp-desc" data-i18n="sp.house.desc">¿No tienes mascotas? Una casa habitada es una casa segura. Nos ocupamos de que todo siga en marcha y de que vuelvas a un hogar impecable.</p>
+          <ul class="sp-list">
+            <li><span class="tick" aria-hidden="true">✓</span><span data-i18n="sp.house.l1">Riego de plantas de interior y jardín.</span></li>
+            <li><span class="tick" aria-hidden="true">✓</span><span data-i18n="sp.house.l2">Recogida de correo y paquetes.</span></li>
+            <li><span class="tick" aria-hidden="true">✓</span><span data-i18n="sp.house.l3">Presencia que disuade y mantiene la casa segura.</span></li>
+            <li><span class="tick" aria-hidden="true">✓</span><span data-i18n="sp.house.l4">Ventilación, basuras y mantenimiento básico.</span></li>
+            <li><span class="tick" aria-hidden="true">✓</span><span data-i18n="sp.house.l5">Gestión de incidencias con avisos inmediatos.</span></li>
+            <li><span class="tick" aria-hidden="true">✓</span><span data-i18n="sp.house.l6">La devolvemos tan limpia como la encontramos, o más.</span></li>
+          </ul>
+        </div>
+        <div class="sp-media reveal">
+          <div class="sp-photo orange"><span data-i18n="sp.house.photo">[Foto: Lautaro regando el jardín]</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="sp-how alt section" id="how">
+    <div class="wrap">
+      <div class="sp-how-head reveal">
+        <p class="kicker" data-i18n="sp.how.k">Cómo funciona</p>
+        <h2 class="display" data-i18n="sp.how.t">Reservar es sencillo y sin sorpresas.</h2>
+      </div>
+      <div class="sp-steps">
+        <div class="sp-step reveal">
+          <div class="n">1</div>
+          <h3 data-i18n="sp.how.1t">Videollamada gratis</h3>
+          <p data-i18n="sp.how.1d">Nos conocemos, nos cuentas tus fechas y resolvemos todas tus dudas. Sin compromiso.</p>
+        </div>
+        <div class="sp-step reveal">
+          <div class="n">2</div>
+          <h3 data-i18n="sp.how.2t">Conocemos tu casa</h3>
+          <p data-i18n="sp.how.2d">Repasamos rutinas, contactos del veterinario y todo lo que tu casa y tus animales necesitan.</p>
+        </div>
+        <div class="sp-step reveal">
+          <div class="n">3</div>
+          <h3 data-i18n="sp.how.3t">Confirmamos fechas</h3>
+          <p data-i18n="sp.how.3d">Acordamos el servicio, el precio y la entrega de llaves. Lo dejamos todo por escrito.</p>
+        </div>
+        <div class="sp-step reveal">
+          <div class="n">4</div>
+          <h3 data-i18n="sp.how.4t">Cuidamos y te avisamos</h3>
+          <p data-i18n="sp.how.4d">Disfruta de tu viaje. Te enviamos fotos y vídeos cada día hasta que vuelves a casa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRICING ============ -->
+  <section class="sp-price section" id="precios">
+    <div class="wrap">
+      <div class="sp-price-head reveal">
+        <p class="kicker" data-i18n="sp.pr.k">Precios orientativos</p>
+        <h2 class="display" data-i18n="sp.pr.t">Tarifas claras, sin letra pequeña.</h2>
+        <p data-i18n="sp.pr.lead">Estos son nuestros precios de referencia. El importe final lo cerramos juntos en la videollamada, según tus fechas y necesidades.</p>
+      </div>
+      <div class="sp-price-grid">
+        <div class="sp-price-card pet reveal">
+          <span class="ribbon" aria-hidden="true"></span>
+          <h3 data-i18n="svc.pet.t">Pet Sitting</h3>
+          <span class="from" data-i18n="sp.pr.from">Desde</span>
+          <div class="amount" data-i18n="sp.pr.pet.amount">25 €</div>
+          <div class="unit" data-i18n="sp.pr.pet.unit">por noche · en tu hogar</div>
+          <ul class="feats">
+            <li data-i18n="sp.pr.pet.f1">Estancia 24 h con tus animales</li>
+            <li data-i18n="sp.pr.pet.f2">Actualizaciones diarias incluidas</li>
+            <li data-i18n="sp.pr.pet.f3">2.º animal: +5 € / noche</li>
+          </ul>
+        </div>
+        <div class="sp-price-card house reveal">
+          <span class="ribbon" aria-hidden="true"></span>
+          <h3 data-i18n="svc.house.t">House Care</h3>
+          <span class="from" data-i18n="sp.pr.from">Desde</span>
+          <div class="amount" data-i18n="sp.pr.house.amount">18 €</div>
+          <div class="unit" data-i18n="sp.pr.house.unit">por día · sin mascotas</div>
+          <ul class="feats">
+            <li data-i18n="sp.pr.house.f1">Casa habitada y cuidada</li>
+            <li data-i18n="sp.pr.house.f2">Riego, correo y mantenimiento</li>
+            <li data-i18n="sp.pr.house.f3">Estancias largas: consúltanos</li>
+          </ul>
+        </div>
+      </div>
+      <div class="sp-disclaimer reveal">
+        <span class="i" aria-hidden="true">€</span>
+        <p data-i18n="sp.pr.note">El precio varía según la duración de la estancia, el número y tipo de animales, la medicación y la ubicación. La videollamada inicial es siempre gratuita y sin compromiso.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="sp-faq alt section" id="faq">
+    <div class="wrap">
+      <div class="sp-faq-head reveal">
+        <p class="kicker" data-i18n="sp.faq.k">Preguntas frecuentes</p>
+        <h2 class="display" data-i18n="sp.faq.t">Todo lo que sueles querer saber.</h2>
+      </div>
+      <div class="faq reveal">
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false"><span data-i18n="sp.faq.q1">¿Cómo funciona el proceso de reserva paso a paso?</span><span class="faq-ico" aria-hidden="true"></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p data-i18n="sp.faq.a1">Empezamos con una videollamada gratis, conocemos tu casa y tus animales, confirmamos fechas y precio por escrito y coordinamos la entrega de llaves. A partir de ahí, solo tienes que viajar.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false"><span data-i18n="sp.faq.q2">¿Hacéis una videollamada antes de confirmar?</span><span class="faq-ico" aria-hidden="true"></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p data-i18n="sp.faq.a2">Siempre. Es la forma de conocernos, ver tu hogar, entender la rutina de tus animales y que confíes en nosotros antes de reservar. Es gratuita y sin compromiso.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false"><span data-i18n="sp.faq.q3">¿Con cuánta antelación hay que reservar?</span><span class="faq-ico" aria-hidden="true"></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p data-i18n="sp.faq.a3">Cuanto antes, mejor: solemos cerrar agenda con semanas o meses de antelación, sobre todo en verano y festivos. Aun así, escríbenos aunque sea con poco margen y miramos disponibilidad.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false"><span data-i18n="sp.faq.q4">¿Tenéis seguro o referencias verificables?</span><span class="faq-ico" aria-hidden="true"></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p data-i18n="sp.faq.a4">Sí. Contamos con referencias verificables de clientes en varios países y te las facilitamos encantados. Trabajamos con transparencia total desde el primer contacto.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false"><span data-i18n="sp.faq.q5">¿Con qué frecuencia recibiré actualizaciones?</span><span class="faq-ico" aria-hidden="true"></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p data-i18n="sp.faq.a5">Cada día, sin que tengas que pedirlo. Te enviamos fotos y vídeos de tus animales y del estado de la casa por WhatsApp, y estamos disponibles si quieres saber algo concreto.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false"><span data-i18n="sp.faq.q6">¿Podéis administrar medicamentos a mi mascota?</span><span class="faq-ico" aria-hidden="true"></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p data-i18n="sp.faq.a6">Sí, tenemos experiencia con pastillas, gotas y medicación inyectable. En la videollamada repasamos dosis y horarios para que todo quede claro.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false"><span data-i18n="sp.faq.q7">¿Qué pasa en caso de emergencia veterinaria?</span><span class="faq-ico" aria-hidden="true"></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p data-i18n="sp.faq.a7">Acordamos de antemano tu veterinario de confianza y un plan de actuación. Ante cualquier urgencia, actuamos de inmediato y te mantenemos informado en todo momento.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false"><span data-i18n="sp.faq.q8">¿Cuántos animales podéis cuidar a la vez?</span><span class="faq-ico" aria-hidden="true"></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p data-i18n="sp.faq.a8">Depende de cada caso, pero al ser dos personas podemos atender varios animales sin que ninguno se quede sin atención. Lo valoramos juntos en la videollamada.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false"><span data-i18n="sp.faq.q9">¿Cómo gestionáis las llaves de la casa?</span><span class="faq-ico" aria-hidden="true"></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p data-i18n="sp.faq.a9">Coordinamos la entrega en persona antes de tu viaje, o como prefieras. Tratamos tus llaves y tu hogar con el máximo cuidado y confidencialidad.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false"><span data-i18n="sp.faq.q10">¿Trabajáis fuera de España?</span><span class="faq-ico" aria-hidden="true"></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p data-i18n="sp.faq.a10">Tenemos base en Canarias, pero somos nómadas: hemos cuidado hogares en tres continentes. Cuéntanos dónde estás y vemos si encaja en nuestra ruta.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section class="final section" id="contact-cta">
+    <div class="wrap">
+      <div class="final-panel reveal">
+        <div class="inner">
+          <h2 data-i18n="cta.title">Hablemos antes de que hagas las maletas.</h2>
+          <p data-i18n="cta.lead">Una videollamada gratis de 20 minutos para conocernos.</p>
+          <a class="btn btn-accent" href="/contacto" data-i18n="cta.btn">Agendar videollamada gratuita</a>
+          <span class="final-note" data-i18n="cta.note">Respondemos en menos de 24 h · Español e inglés</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="/">
+          <img src="assets/logo.png" alt="Lululau Pets" width="44" height="44" />
+          <span class="brand-name"><b>Lululau</b> <span>Pets</span></span>
+        </a>
+        <p data-i18n="foot.tagline">Tu casa y tus mascotas, en las mejores manos.</p>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="foot.nav">Navegación</h4>
+        <a href="/" data-i18n="nav.home">Inicio</a>
+        <a href="/nosotros" data-i18n="nav.about">Nosotros</a>
+        <a href="/servicios" data-i18n="nav.services">Servicios</a>
+        <a href="/galeria" data-i18n="nav.gallery">Galería</a>
+        <a href="/reviews" data-i18n="nav.reviews">Reseñas</a>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="foot.contact">Contacto</h4>
+        <a href="/contacto" data-i18n="nav.contact">Contacto</a>
+        <a href="mailto:contact@lululaupets.com" data-i18n="foot.email">contact@lululaupets.com</a>
+        <a href="https://wa.me/34633032738" target="_blank" rel="noopener">+34 633 032 738</a>
+        <a href="https://maps.google.com/?q=El+Médano,+Tenerife,+Canarias" target="_blank" rel="noopener" data-i18n="foot.location">El Médano, Tenerife</a>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="foot.follow">Síguenos</h4>
+        <a href="https://www.instagram.com/lululau.pets" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.lululaupets.com" target="_blank" rel="noopener">lululaupets.com</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Lululau Pets · <span data-i18n="foot.rights">Todos los derechos reservados.</span></span>
+      <span data-i18n="foot.made">Hecho con cariño por Luz y Lautaro.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/i18n.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

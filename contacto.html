@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es" data-title-key="ct.meta.title" data-desc-key="ct.meta.desc">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contacto — Lululau Pets | House & Pet Sitting en Canarias</title>
+<meta name="description" content="Contacta a Lululau Pets para pet sitting y house care en Canarias. WhatsApp, email o formulario. Respondemos en menos de 24h." />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+<meta property="og:title" content="Contacto — Lululau Pets" />
+<meta property="og:description" content="Hablemos. Te respondemos en menos de 24 horas." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="assets/logo.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="assets/base.css" />
+
+<style>
+/* ============================================================
+   CONTACTO — page-specific
+   ============================================================ */
+
+/* SHORT HERO */
+.ct-hero { position: relative; overflow: hidden; }
+.ct-hero .wrap { padding-top: clamp(40px, 6vw, 76px); padding-bottom: clamp(28px, 4vw, 48px); }
+.ct-hero h1 { font-size: clamp(46px, 8vw, 92px); line-height: 1; margin: var(--space-4) 0 var(--space-5); }
+.ct-hero .lead { font-size: clamp(18px, 1.2rem + 0.3vw, 23px); color: var(--color-text-muted); max-width: 40ch; }
+.ct-hero-paws { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.ct-hero-paws span { position: absolute; font-size: clamp(40px, 6vw, 84px); opacity: 0.06; }
+.ct-hero-paws span:nth-child(1) { top: 12%; right: 8%; transform: rotate(18deg); }
+.ct-hero-paws span:nth-child(2) { top: 48%; right: 22%; transform: rotate(-12deg); }
+.ct-hero-paws span:nth-child(3) { bottom: 8%; right: 38%; transform: rotate(24deg); }
+
+/* DIRECT CONTACT CARDS */
+.ct-direct { padding-top: clamp(8px, 2vw, 16px); }
+.ct-direct-head { margin-bottom: clamp(24px, 3vw, 36px); }
+.ct-direct-head h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(26px, 2.8vw, 38px); margin-top: var(--space-3); }
+.ct-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2vw, 24px); }
+.ct-card {
+  display: flex; flex-direction: column; gap: var(--space-3);
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--r-xl); padding: clamp(24px, 3vw, 34px);
+  transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+}
+.ct-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: transparent; }
+.ct-card-ico { width: 54px; height: 54px; border-radius: var(--r-lg); display: grid; place-items: center; color: #fff; margin-bottom: var(--space-2); }
+.ct-card-ico svg { width: 28px; height: 28px; }
+.ct-card.wa .ct-card-ico { background: #1f8a5b; }
+.ct-card.em .ct-card-ico { background: var(--color-primary-deep); }
+.ct-card.ig .ct-card-ico { background: linear-gradient(135deg, #e07b3a 0%, #c4632a 60%, #9b3d8f 100%); }
+.ct-card h3 { font-family: var(--font-display); font-weight: 400; font-size: clamp(23px, 2.2vw, 28px); line-height: 1; }
+.ct-card p { color: var(--color-text-muted); font-size: 15px; flex: 1; }
+.ct-card .link-arrow { margin-top: var(--space-2); font-size: 15.5px; }
+.ct-card.wa .link-arrow { color: #1f8a5b; }
+
+/* FORM */
+.ct-form-sec { background: var(--color-surface); border-block: 1px solid var(--color-border); }
+.ct-form-head { max-width: 560px; margin-bottom: clamp(28px, 3.5vw, 44px); }
+.ct-form-head h2 { font-size: clamp(30px, 3.6vw, 48px); margin-top: var(--space-4); }
+.ct-form-head p { color: var(--color-text-muted); margin-top: var(--space-3); }
+.ct-form-shell { max-width: 760px; }
+.ct-form { display: grid; gap: var(--space-5); }
+.ct-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); }
+.field { display: flex; flex-direction: column; gap: 7px; }
+.field label { font-size: 14px; font-weight: 700; letter-spacing: 0.01em; }
+.field label .req { color: var(--color-accent-deep); }
+.field input, .field select, .field textarea {
+  font: inherit; font-size: 16px; color: var(--color-text);
+  background: var(--color-bg); border: 1.5px solid var(--color-border);
+  border-radius: var(--r-md); padding: 13px 15px; width: 100%;
+  transition: border-color var(--t), box-shadow var(--t), background var(--t);
+}
+.field textarea { resize: vertical; min-height: 96px; line-height: 1.5; }
+.field select { appearance: none; -webkit-appearance: none; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%237a6f68' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 15px center; padding-right: 40px;
+}
+.field input::placeholder, .field textarea::placeholder { color: var(--color-text-muted); opacity: 0.7; }
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none; border-color: var(--color-primary-deep);
+  box-shadow: 0 0 0 3px oklch(0.55 0.09 180 / 0.16); background: var(--color-surface);
+}
+.ct-gdpr { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start; padding: var(--space-4); border: 1px solid var(--color-border); border-radius: var(--r-md); background: var(--color-bg); }
+.ct-gdpr input { width: 22px; height: 22px; margin-top: 1px; accent-color: var(--color-primary-deep); cursor: pointer; flex-shrink: 0; }
+.ct-gdpr label { font-size: 14.5px; color: var(--color-text-muted); line-height: 1.45; cursor: pointer; }
+.ct-submit-row { display: flex; align-items: center; gap: var(--space-5); flex-wrap: wrap; }
+.ct-form .btn-primary { font-size: 17px; padding: 16px 34px; }
+.ct-note-inline { font-size: 13.5px; color: var(--color-text-muted); }
+
+/* SUCCESS */
+.ct-success { display: none; text-align: center; max-width: 560px; margin-inline: auto; padding: clamp(36px, 5vw, 64px) clamp(24px, 4vw, 48px); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--r-xl); }
+.ct-success.show { display: block; animation: ctpop 0.5s var(--ease) both; }
+@keyframes ctpop { from { opacity: 0; transform: translateY(16px) scale(0.98); } to { opacity: 1; transform: none; } }
+.ct-success .badge { width: 72px; height: 72px; border-radius: 50%; background: oklch(0.92 0.05 180); display: grid; place-items: center; margin: 0 auto var(--space-5); }
+.ct-success .badge svg { width: 36px; height: 36px; stroke: var(--color-primary-deep); }
+.ct-success h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(32px, 4vw, 48px); margin-bottom: var(--space-3); }
+.ct-success p { color: var(--color-text-muted); font-size: 17px; margin-bottom: var(--space-6); }
+
+/* TRUST BLOCK */
+.ct-trust { }
+.ct-trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 40px); }
+.ct-trust-item { display: flex; gap: var(--space-4); align-items: flex-start; }
+.ct-trust-item .ti { flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; }
+.ct-trust-item .ti svg { width: 22px; height: 22px; }
+.ct-trust-item:nth-child(1) .ti { background: oklch(0.92 0.05 180); color: var(--color-primary-deep); }
+.ct-trust-item:nth-child(2) .ti { background: oklch(0.92 0.05 60); color: var(--color-accent-deep); }
+.ct-trust-item:nth-child(3) .ti { background: oklch(0.92 0.05 180); color: var(--color-primary-deep); }
+.ct-trust-item p { font-size: 16px; font-weight: 600; line-height: 1.35; padding-top: 6px; }
+
+@media (max-width: 980px) {
+  .ct-cards { grid-template-columns: 1fr; }
+  .ct-trust-grid { grid-template-columns: 1fr; gap: var(--space-6); }
+}
+@media (max-width: 540px) {
+  .ct-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main" data-i18n="nav.skip">Saltar al contenido</a>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <div class="nav-inner">
+      <a class="brand" href="/" aria-label="Lululau Pets">
+        <img src="assets/logo.png" alt="Lululau Pets — perro y gato ilustrados" />
+        <span class="brand-name"><b>Lululau</b> <span>Pets</span></span>
+      </a>
+
+      <nav class="nav-links" aria-label="Principal">
+        <a href="/" data-i18n="nav.home">Inicio</a>
+        <a href="/nosotros" data-i18n="nav.about">Nosotros</a>
+        <a href="/servicios" data-i18n="nav.services">Servicios</a>
+        <a href="/galeria" data-i18n="nav.gallery">Galería</a>
+        <a href="/reviews" data-i18n="nav.reviews">Reseñas</a>
+        <a href="/contacto" data-i18n="nav.contact" aria-current="page">Contacto</a>
+      </nav>
+
+      <div class="nav-right">
+        <div class="langs" role="group" aria-label="Language">
+          <button type="button" data-lang="es" aria-pressed="true">ES</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+          <button type="button" data-lang="de" aria-pressed="false">DE</button>
+          <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+        </div>
+        <a class="btn btn-primary nav-cta" href="#form" data-i18n="nav.write">Escríbenos</a>
+        <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-inner">
+        <a href="/" data-i18n="nav.home">Inicio</a>
+        <a href="/nosotros" data-i18n="nav.about">Nosotros</a>
+        <a href="/servicios" data-i18n="nav.services">Servicios</a>
+        <a href="/galeria" data-i18n="nav.gallery">Galería</a>
+        <a href="/reviews" data-i18n="nav.reviews">Reseñas</a>
+        <a href="/contacto" data-i18n="nav.contact">Contacto</a>
+        <a class="btn btn-primary" href="#form" data-i18n="nav.write">Escríbenos</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="ct-hero">
+    <div class="ct-hero-paws" aria-hidden="true">
+      <span>🐾</span><span>🐾</span><span>🐾</span>
+    </div>
+    <div class="wrap">
+      <p class="kicker" data-i18n="ct.h.kicker">Contacto</p>
+      <h1 class="display" data-i18n="ct.h.title">Hablemos</h1>
+      <p class="lead" data-i18n="ct.h.lead">Cuéntanos sobre tu mascota y tu casa, y nos ponemos en contacto contigo en menos de 24 horas.</p>
+    </div>
+  </section>
+
+  <!-- ============ DIRECT CONTACT ============ -->
+  <section class="ct-direct section" id="direct">
+    <div class="wrap">
+      <div class="ct-direct-head reveal">
+        <p class="kicker" data-i18n="ct.direct.k">Directo y rápido</p>
+        <h2 data-i18n="ct.direct.t">¿Prefieres escribirnos ya?</h2>
+      </div>
+      <div class="ct-cards">
+        <article class="ct-card wa reveal">
+          <span class="ct-card-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.9-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.5 1.1 2.7c.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.5-.3z"/><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.2-1.2l-.3-.2-2.8.9.9-2.7-.2-.3A8 8 0 1 1 12 20z"/></svg>
+          </span>
+          <h3 data-i18n="ct.wa.label">WhatsApp</h3>
+          <p data-i18n="ct.wa.desc">La forma más rápida de llegar a nosotros. Te leemos a diario.</p>
+          <a class="link-arrow" id="wa-link" href="#" target="_blank" rel="noopener"><span data-i18n="ct.wa.cta">Escríbenos por WhatsApp</span> <span class="arrow" aria-hidden="true">→</span></a>
+        </article>
+
+        <article class="ct-card em reveal">
+          <span class="ct-card-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          </span>
+          <h3 data-i18n="ct.em.label">Email</h3>
+          <p data-i18n="ct.em.desc">Para consultas con más detalle o documentos.</p>
+          <a class="link-arrow" id="em-link" href="#"><span data-i18n="ct.em.cta">Enviar un email</span> <span class="arrow" aria-hidden="true">→</span></a>
+        </article>
+
+        <article class="ct-card ig reveal">
+          <span class="ct-card-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+          </span>
+          <h3 data-i18n="ct.ig.label">Instagram</h3>
+          <p data-i18n="ct.ig.desc">Mira nuestro día a día cuidando casas y mascotas.</p>
+          <a class="link-arrow" href="https://www.instagram.com/lululau.pets" target="_blank" rel="noopener"><span data-i18n="ct.ig.cta">Síguenos en Instagram</span> <span class="arrow" aria-hidden="true">→</span></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FORM ============ -->
+  <section class="ct-form-sec section" id="form">
+    <div class="wrap">
+      <div class="ct-form-head reveal">
+        <p class="kicker" data-i18n="ct.form.k">Formulario</p>
+        <h2 class="display" data-i18n="ct.form.t">O cuéntanoslo con calma</h2>
+        <p data-i18n="ct.form.lead">Cuantos más detalles nos des, mejor podremos ayudarte. Sin compromiso.</p>
+      </div>
+
+      <div class="ct-form-shell reveal">
+        <form class="ct-form" id="contact-form" novalidate>
+          <div class="ct-row">
+            <div class="field">
+              <label for="f-name"><span data-i18n="ct.f.name">Nombre</span> <span class="req">*</span></label>
+              <input type="text" id="f-name" name="name" required data-i18n-attr="placeholder:ct.f.name.ph" placeholder="Tu nombre" />
+            </div>
+            <div class="field">
+              <label for="f-email"><span data-i18n="ct.f.email">Email</span> <span class="req">*</span></label>
+              <input type="email" id="f-email" name="email" required data-i18n-attr="placeholder:ct.f.email.ph" placeholder="tucorreo@ejemplo.com" />
+            </div>
+          </div>
+
+          <div class="ct-row">
+            <div class="field">
+              <label for="f-loc" data-i18n="ct.f.loc">Ciudad / País</label>
+              <input type="text" id="f-loc" name="location" data-i18n-attr="placeholder:ct.f.loc.ph" placeholder="Para saber si eres local o remoto" />
+            </div>
+            <div class="field">
+              <label for="f-svc" data-i18n="ct.f.svc">Tipo de servicio</label>
+              <select id="f-svc" name="service">
+                <option value="" data-i18n="ct.f.svc.0">Selecciona un servicio</option>
+                <option value="dog-sitting" data-i18n="ct.f.svc.dog">Dog Sitting</option>
+                <option value="cat-sitting" data-i18n="ct.f.svc.cat">Cat Sitting</option>
+                <option value="house-care" data-i18n="ct.f.svc.house">House Care</option>
+                <option value="dog-walking" data-i18n="ct.f.svc.walk">Dog Walking</option>
+                <option value="other" data-i18n="ct.f.svc.other">Otro</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-dates" data-i18n="ct.f.dates">Fechas aproximadas</label>
+            <input type="text" id="f-dates" name="dates" data-i18n-attr="placeholder:ct.f.dates.ph" placeholder="Ej.: del 10 al 20 de agosto, o «aún por definir»" />
+          </div>
+
+          <div class="field">
+            <label for="f-pets" data-i18n="ct.f.pets">Tu(s) mascota(s)</label>
+            <textarea id="f-pets" name="pets" data-i18n-attr="placeholder:ct.f.pets.ph" placeholder="Nombre, especie, edad y cualquier cosa especial que debamos saber"></textarea>
+          </div>
+
+          <div class="field">
+            <label for="f-msg" data-i18n="ct.f.msg">Mensaje</label>
+            <textarea id="f-msg" name="message" data-i18n-attr="placeholder:ct.f.msg.ph" placeholder="Cuéntanos lo que quieras"></textarea>
+          </div>
+
+          <div class="ct-gdpr">
+            <input type="checkbox" id="f-gdpr" name="gdpr" required />
+            <label for="f-gdpr" data-i18n="ct.f.gdpr">Acepto que mis datos se usen para responder a mi consulta.</label>
+          </div>
+
+          <div class="ct-submit-row">
+            <button type="submit" class="btn btn-primary" data-i18n="ct.f.submit">Enviar consulta</button>
+            <span class="ct-note-inline" data-i18n="cta.note">Respondemos en menos de 24 h · Español e inglés</span>
+          </div>
+        </form>
+
+        <div class="ct-success" id="form-success" role="status" aria-live="polite">
+          <span class="badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          </span>
+          <h2 data-i18n="ct.ok.title">¡Gracias! 🐾</h2>
+          <p data-i18n="ct.ok.text">Hemos recibido tu mensaje. Te escribimos muy pronto, normalmente en menos de 24 horas.</p>
+          <button type="button" class="btn btn-ghost" id="form-reset" data-i18n="ct.ok.again">Enviar otra consulta</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRUST ============ -->
+  <section class="ct-trust section" id="trust">
+    <div class="wrap">
+      <div class="ct-trust-grid">
+        <div class="ct-trust-item reveal">
+          <span class="ti" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </span>
+          <p data-i18n="ct.trust.1">Respondemos en menos de 24 h</p>
+        </div>
+        <div class="ct-trust-item reveal">
+          <span class="ti" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+          </span>
+          <p data-i18n="ct.trust.2">Tus datos no se comparten con terceros</p>
+        </div>
+        <div class="ct-trust-item reveal">
+          <span class="ti" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4L4 21l1.1-4a8.4 8.4 0 1 1 15.9-5.5z"/></svg>
+          </span>
+          <p data-i18n="ct.trust.3">Primera consulta sin compromiso</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="/">
+          <img src="assets/logo.png" alt="Lululau Pets" width="44" height="44" />
+          <span class="brand-name"><b>Lululau</b> <span>Pets</span></span>
+        </a>
+        <p data-i18n="foot.tagline">Tu casa y tus mascotas, en las mejores manos.</p>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="foot.nav">Navegación</h4>
+        <a href="/" data-i18n="nav.home">Inicio</a>
+        <a href="/nosotros" data-i18n="nav.about">Nosotros</a>
+        <a href="/servicios" data-i18n="nav.services">Servicios</a>
+        <a href="/galeria" data-i18n="nav.gallery">Galería</a>
+        <a href="/reviews" data-i18n="nav.reviews">Reseñas</a>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="foot.contact">Contacto</h4>
+        <a href="/contacto" data-i18n="nav.contact">Contacto</a>
+        <a href="mailto:contact@lululaupets.com" data-i18n="foot.email">contact@lululaupets.com</a>
+        <a href="https://wa.me/34633032738" target="_blank" rel="noopener">+34 633 032 738</a>
+        <a href="https://maps.google.com/?q=El+Médano,+Tenerife,+Canarias" target="_blank" rel="noopener" data-i18n="foot.location">El Médano, Tenerife</a>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="foot.follow">Síguenos</h4>
+        <a href="https://www.instagram.com/lululau.pets" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.lululaupets.com" target="_blank" rel="noopener">lululaupets.com</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Lululau Pets · <span data-i18n="foot.rights">Todos los derechos reservados.</span></span>
+      <span data-i18n="foot.made">Hecho con cariño por Luz y Lautaro.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/i18n.js"></script>
+<script src="assets/app.js"></script>
+<script>
+(function () {
+  // ---- Direct-contact links (WhatsApp + mailto) built from i18n, rebuilt on language change ----
+  var WA_NUMBER = "34633032738"; // TODO: reemplazar por el número real de Luz y Lautaro
+  var EMAIL = "contact@lululaupets.com";
+
+  function buildLinks() {
+    var t = (window.LululauI18n && window.LululauI18n.t) ? window.LululauI18n.t : function () { return ""; };
+    var waMsg = t("ct.wa.msg") || "";
+    var subj = t("ct.em.subject") || "";
+    var wa = document.getElementById("wa-link");
+    var em = document.getElementById("em-link");
+    if (wa) wa.href = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(waMsg);
+    if (em) em.href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent(subj);
+  }
+  document.addEventListener("lululau:lang", buildLinks);
+  buildLinks();
+
+  // ---- Form submit (no backend): validate, hide form, show success ----
+  var form = document.getElementById("contact-form");
+  var success = document.getElementById("form-success");
+  var resetBtn = document.getElementById("form-reset");
+
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      // Native validation for required fields + GDPR
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      form.style.display = "none";
+      success.classList.add("show");
+      success.scrollTop = 0;
+      // Bring the confirmation into view without jumping the whole page
+      var y = success.getBoundingClientRect().top + window.scrollY - 120;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    });
+  }
+
+  if (resetBtn) {
+    resetBtn.addEventListener("click", function () {
+      form.reset();
+      success.classList.remove("show");
+      form.style.display = "grid";
+      var y = form.getBoundingClientRect().top + window.scrollY - 120;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    });
+  }
+})();
+</script>
+</body>
+</html>

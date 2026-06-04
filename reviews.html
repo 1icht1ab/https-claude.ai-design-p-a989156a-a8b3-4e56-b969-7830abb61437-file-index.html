@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es" data-title-key="rv.meta.title" data-desc-key="rv.meta.desc">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Reseñas — Lululau Pets</title>
+<meta name="description" content="Lo que dicen los hosts que nos confiaron su casa y sus animales. Lee sus reseñas y deja la tuya." />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+<meta property="og:title" content="Reseñas — Lululau Pets" />
+<meta property="og:description" content="5/5 en cada estancia que hemos cuidado." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="assets/logo.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="assets/base.css" />
+
+<style>
+/* ============================================================
+   REVIEWS — page-specific
+   ============================================================ */
+
+/* SHORT HERO */
+.rv-hero { position: relative; overflow: hidden; }
+.rv-hero .wrap { padding-top: clamp(40px, 6vw, 76px); padding-bottom: clamp(20px, 3vw, 36px); }
+.rv-hero h1 { font-size: clamp(40px, 6vw, 74px); line-height: 1.16; margin: var(--space-4) 0 var(--space-6); padding-bottom: 0.08em; max-width: 17ch; }
+.rv-hero .lead { font-size: clamp(17px, 1.1rem + 0.3vw, 21px); color: var(--color-text-muted); max-width: 46ch; }
+.rv-hero-rating { display: inline-flex; align-items: center; gap: 12px; margin-top: var(--space-6); padding: 12px 20px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 999px; box-shadow: var(--shadow-sm); }
+.rv-hero-rating .stars { color: var(--color-accent); letter-spacing: 2px; font-size: 17px; }
+.rv-hero-rating b { font-family: var(--font-display); font-size: 22px; line-height: 1; margin-right: 6px; }
+.rv-hero-rating small { color: var(--color-text-muted); font-size: 13px; white-space: nowrap; }
+
+/* REVIEWS GRID */
+.rv-list-head { max-width: 640px; margin-bottom: clamp(32px, 4vw, 52px); }
+.rv-list-head h2 { font-size: clamp(30px, 3.4vw, 46px); margin-top: var(--space-4); }
+.rv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(18px, 2.2vw, 26px); }
+.rv-card {
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--r-xl); padding: clamp(24px, 2.6vw, 32px);
+  display: flex; flex-direction: column; gap: var(--space-4);
+}
+.rv-card-top { display: flex; align-items: center; gap: 14px; }
+.rv-avatar { width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0; display: grid; place-items: center; color: #fff; font-family: var(--font-display); font-size: 25px; line-height: 1; }
+.rv-avatar.c1 { background: var(--color-primary-deep); }
+.rv-avatar.c2 { background: var(--color-accent-deep); }
+.rv-avatar.c3 { background: var(--color-primary); }
+.rv-card-id .name { font-weight: 700; font-size: 16px; }
+.rv-card-id .meta { font-size: 13px; color: var(--color-text-muted); }
+.rv-stars { color: var(--color-accent); letter-spacing: 2px; font-size: 15px; }
+.rv-text { font-family: var(--font-display); font-weight: 400; font-size: clamp(19px, 1.9vw, 23px); line-height: 1.32; color: var(--color-text); }
+.rv-foot { margin-top: auto; padding-top: var(--space-4); border-top: 1px solid var(--color-divider); display: flex; align-items: center; justify-content: space-between; }
+.rv-foot .verified { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; color: var(--color-primary-deep); }
+.rv-foot .verified .check { width: 16px; height: 16px; border-radius: 50%; background: var(--color-primary-deep); color: #fff; display: grid; place-items: center; font-size: 9px; }
+.rv-foot .year { font-size: 13px; color: var(--color-text-muted); font-weight: 600; }
+.rv-placeholder { opacity: 0.92; }
+.rv-placeholder .rv-text { color: var(--color-text-muted); font-style: italic; }
+
+/* FORM */
+.rv-form-sec { background: var(--color-surface); border-block: 1px solid var(--color-border); }
+.rv-form-head { max-width: 580px; margin-bottom: clamp(28px, 3.5vw, 44px); }
+.rv-form-head h2 { font-size: clamp(30px, 3.6vw, 48px); margin-top: var(--space-4); }
+.rv-form-head p { color: var(--color-text-muted); margin-top: var(--space-3); }
+.rv-form-shell { max-width: 720px; }
+.rv-form { display: grid; gap: var(--space-5); }
+.rv-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); }
+.field { display: flex; flex-direction: column; gap: 7px; }
+.field label { font-size: 14px; font-weight: 700; }
+.field label .req { color: var(--color-accent-deep); }
+.field input, .field textarea {
+  font: inherit; font-size: 16px; color: var(--color-text);
+  background: var(--color-bg); border: 1.5px solid var(--color-border);
+  border-radius: var(--r-md); padding: 13px 15px; width: 100%;
+  transition: border-color var(--t), box-shadow var(--t), background var(--t);
+}
+.field textarea { resize: vertical; min-height: 120px; line-height: 1.5; }
+.field input::placeholder, .field textarea::placeholder { color: var(--color-text-muted); opacity: 0.7; }
+.field input:focus, .field textarea:focus { outline: none; border-color: var(--color-primary-deep); box-shadow: 0 0 0 3px oklch(0.55 0.09 180 / 0.16); background: var(--color-surface); }
+
+/* STAR RATING (clickable) */
+.rv-rating-field { }
+.rv-rating-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px; }
+.rv-rating-head label { font-size: 14px; font-weight: 700; }
+.rv-rating-head .hint { font-size: 12.5px; color: var(--color-text-muted); }
+.rv-stars-input { display: inline-flex; gap: 6px; }
+.rv-stars-input button {
+  font-size: 34px; line-height: 1; color: var(--color-border);
+  transition: transform var(--t), color var(--t); padding: 2px;
+}
+.rv-stars-input button:hover { transform: scale(1.12); }
+.rv-stars-input button.on { color: var(--color-accent); }
+.rv-stars-input button:focus-visible { outline: 2.5px solid var(--color-primary-deep); outline-offset: 2px; border-radius: 4px; }
+
+.rv-consent { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start; padding: var(--space-4); border: 1px solid var(--color-border); border-radius: var(--r-md); background: var(--color-bg); }
+.rv-consent input { width: 22px; height: 22px; margin-top: 1px; accent-color: var(--color-primary-deep); cursor: pointer; flex-shrink: 0; }
+.rv-consent label { font-size: 14.5px; color: var(--color-text-muted); line-height: 1.45; cursor: pointer; }
+.rv-form .btn-primary { font-size: 17px; padding: 16px 34px; justify-self: start; }
+
+/* SUCCESS */
+.rv-success { display: none; text-align: center; max-width: 560px; margin-inline: auto; padding: clamp(36px, 5vw, 64px) clamp(24px, 4vw, 48px); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--r-xl); }
+.rv-success.show { display: block; animation: rvpop 0.5s var(--ease) both; }
+@keyframes rvpop { from { opacity: 0; transform: translateY(16px) scale(0.98); } to { opacity: 1; transform: none; } }
+.rv-success .badge { width: 72px; height: 72px; border-radius: 50%; background: oklch(0.92 0.05 180); display: grid; place-items: center; margin: 0 auto var(--space-5); }
+.rv-success .badge svg { width: 36px; height: 36px; stroke: var(--color-primary-deep); }
+.rv-success h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(30px, 4vw, 46px); margin-bottom: var(--space-3); }
+.rv-success p { color: var(--color-text-muted); font-size: 16px; margin-bottom: var(--space-6); line-height: 1.55; }
+
+@media (max-width: 980px) {
+  .rv-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 720px) {
+  .rv-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 540px) {
+  .rv-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main" data-i18n="nav.skip">Saltar al contenido</a>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <div class="nav-inner">
+      <a class="brand" href="/" aria-label="Lululau Pets">
+        <img src="assets/logo.png" alt="Lululau Pets — perro y gato ilustrados" />
+        <span class="brand-name"><b>Lululau</b> <span>Pets</span></span>
+      </a>
+
+      <nav class="nav-links" aria-label="Principal">
+        <a href="/" data-i18n="nav.home">Inicio</a>
+        <a href="/nosotros" data-i18n="nav.about">Nosotros</a>
+        <a href="/servicios" data-i18n="nav.services">Servicios</a>
+        <a href="/galeria" data-i18n="nav.gallery">Galería</a>
+        <a href="/reviews" data-i18n="nav.reviews" aria-current="page">Reseñas</a>
+        <a href="/contacto" data-i18n="nav.contact">Contacto</a>
+      </nav>
+
+      <div class="nav-right">
+        <div class="langs" role="group" aria-label="Language">
+          <button type="button" data-lang="es" aria-pressed="true">ES</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+          <button type="button" data-lang="de" aria-pressed="false">DE</button>
+          <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+        </div>
+        <a class="btn btn-primary nav-cta" href="#form" data-i18n="rv.f.submit">Enviar reseña</a>
+        <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-inner">
+        <a href="/" data-i18n="nav.home">Inicio</a>
+        <a href="/nosotros" data-i18n="nav.about">Nosotros</a>
+        <a href="/servicios" data-i18n="nav.services">Servicios</a>
+        <a href="/galeria" data-i18n="nav.gallery">Galería</a>
+        <a href="/reviews" data-i18n="nav.reviews">Reseñas</a>
+        <a href="/contacto" data-i18n="nav.contact">Contacto</a>
+        <a class="btn btn-primary" href="#form" data-i18n="rv.f.submit">Enviar reseña</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="rv-hero">
+    <div class="wrap">
+      <p class="kicker" data-i18n="rv.h.kicker">Reseñas</p>
+      <h1 class="display" data-i18n="rv.h.title">Lo que dicen quienes ya nos conocen</h1>
+      <p class="lead" data-i18n="rv.h.lead">Hosts reales que nos confiaron su hogar y sus animales. Sin filtros, sin intermediarios.</p>
+      <div class="rv-hero-rating">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <span>
+          <b>5/5</b>
+          <small data-i18n="rv.list.k"> · Reseñas verificadas</small>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXISTING REVIEWS ============ -->
+  <section class="rv-list section" id="reviews">
+    <div class="wrap">
+      <div class="rv-list-head reveal">
+        <p class="kicker" data-i18n="rv.list.k">Reseñas verificadas</p>
+        <h2 class="display" data-i18n="rv.list.t">5/5 en cada estancia que hemos cuidado.</h2>
+      </div>
+      <div class="rv-grid">
+
+        <article class="rv-card reveal">
+          <div class="rv-card-top">
+            <span class="rv-avatar c1" aria-hidden="true">M</span>
+            <div class="rv-card-id">
+              <div class="name">Marina</div>
+              <div class="meta">Vinko · Barcelona, España</div>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5/5">★★★★★</div>
+          <p class="rv-text">“Luz and Lautaro are reliable and dedicated housesitters. Communication was excellent from the beginning, and during our vacations they sent frequent updates with photos. Vinko was happy, and the house was spotless on our return.”</p>
+          <div class="rv-foot">
+            <span class="verified"><span class="check" aria-hidden="true">✓</span><span data-i18n="rv.verified">Reseña verificada</span></span>
+            <span class="year">2024</span>
+          </div>
+        </article>
+
+        <article class="rv-card reveal">
+          <div class="rv-card-top">
+            <span class="rv-avatar c2" aria-hidden="true">D</span>
+            <div class="rv-card-id">
+              <div class="name">Deborah</div>
+              <div class="meta">Chichi · Jimena de la Frontera</div>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5/5">★★★★★</div>
+          <p class="rv-text">“Luz &amp; Lautaro sat for us for a month and we feel so lucky they applied! Very responsive, great care of our little dog, video and photo updates almost every day. We came home to a nice clean house, freshly washed bedding, and even a delicious baked cake!”</p>
+          <div class="rv-foot">
+            <span class="verified"><span class="check" aria-hidden="true">✓</span><span data-i18n="rv.verified">Reseña verificada</span></span>
+            <span class="year">2025</span>
+          </div>
+        </article>
+
+        <article class="rv-card reveal">
+          <div class="rv-card-top">
+            <span class="rv-avatar c3" aria-hidden="true">J</span>
+            <div class="rv-card-id">
+              <div class="name">JM</div>
+              <div class="meta">Maru · Sevenoaks, UK</div>
+            </div>
+          </div>
+          <div class="rv-stars" aria-label="5/5">★★★★★</div>
+          <p class="rv-text">“I really couldn't have found two best sitters for my cat. Daily updates with pictures and a detailed diary. They even chopped grass for Maru when it was too wet outside! Incredibly observant, genuine love for animals, and the house was left in tip top condition.”</p>
+          <div class="rv-foot">
+            <span class="verified"><span class="check" aria-hidden="true">✓</span><span data-i18n="rv.verified">Reseña verificada</span></span>
+            <span class="year">2025</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LEAVE A REVIEW ============ -->
+  <section class="rv-form-sec section" id="form">
+    <div class="wrap">
+      <div class="rv-form-head reveal">
+        <p class="kicker" data-i18n="rv.form.k">Deja tu reseña</p>
+        <h2 class="display" data-i18n="rv.form.t">¿Cuidamos de tu casa o de tu peludo?</h2>
+        <p data-i18n="rv.form.lead">Nos encantaría leerte. Tú nos cuentas, nosotros la revisamos y la publicamos aquí. No necesitas crear ninguna cuenta.</p>
+      </div>
+
+      <div class="rv-form-shell reveal">
+        <form class="rv-form" id="review-form" novalidate>
+          <div class="rv-row">
+            <div class="field">
+              <label for="r-name"><span data-i18n="rv.f.name">Tu nombre</span> <span class="req">*</span></label>
+              <input type="text" id="r-name" name="name" required data-i18n-attr="placeholder:rv.f.name.ph" placeholder="Cómo quieres que aparezca" />
+            </div>
+            <div class="field">
+              <label for="r-pet" data-i18n="rv.f.pet">Nombre de tu(s) mascota(s)</label>
+              <input type="text" id="r-pet" name="pet" data-i18n-attr="placeholder:rv.f.pet.ph" placeholder="Ej.: Teddy, Pöly…" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="r-loc" data-i18n="rv.f.loc">Ciudad / País</label>
+            <input type="text" id="r-loc" name="location" data-i18n-attr="placeholder:rv.f.loc.ph" placeholder="Ej.: Brisbane, Australia" />
+          </div>
+
+          <div class="field">
+            <label for="r-review"><span data-i18n="rv.f.review">Tu reseña</span> <span class="req">*</span></label>
+            <textarea id="r-review" name="review" required data-i18n-attr="placeholder:rv.f.review.ph" placeholder="Cuéntanos cómo fue tu experiencia con nosotros"></textarea>
+          </div>
+
+          <div class="rv-rating-field">
+            <div class="rv-rating-head">
+              <label id="rating-label"><span data-i18n="rv.f.rating">Valoración</span> <span class="req">*</span></label>
+              <span class="hint" data-i18n="rv.f.rating.hint">Toca para puntuar</span>
+            </div>
+            <div class="rv-stars-input" id="stars-input" role="radiogroup" aria-labelledby="rating-label">
+              <button type="button" data-val="1" aria-label="1" role="radio" aria-checked="false">★</button>
+              <button type="button" data-val="2" aria-label="2" role="radio" aria-checked="false">★</button>
+              <button type="button" data-val="3" aria-label="3" role="radio" aria-checked="false">★</button>
+              <button type="button" data-val="4" aria-label="4" role="radio" aria-checked="false">★</button>
+              <button type="button" data-val="5" aria-label="5" role="radio" aria-checked="false">★</button>
+            </div>
+            <input type="hidden" id="r-rating" name="rating" value="" required />
+          </div>
+
+          <div class="rv-consent">
+            <input type="checkbox" id="r-consent" name="consent" required />
+            <label for="r-consent" data-i18n="rv.f.consent">Acepto que mi reseña aparezca en la web de Lululau Pets.</label>
+          </div>
+
+          <button type="submit" class="btn btn-primary" data-i18n="rv.f.submit">Enviar reseña</button>
+        </form>
+
+        <div class="rv-success" id="review-success" role="status" aria-live="polite">
+          <span class="badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          </span>
+          <h2 data-i18n="rv.ok.title">¡Gracias por tu reseña! 🐾</h2>
+          <p data-i18n="rv.ok.text">La revisaremos y la publicaremos pronto.</p>
+          <button type="button" class="btn btn-ghost" id="review-reset" data-i18n="rv.ok.again">Dejar otra reseña</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="/">
+          <img src="assets/logo.png" alt="Lululau Pets" width="44" height="44" />
+          <span class="brand-name"><b>Lululau</b> <span>Pets</span></span>
+        </a>
+        <p data-i18n="foot.tagline">Tu casa y tus mascotas, en las mejores manos.</p>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="foot.nav">Navegación</h4>
+        <a href="/" data-i18n="nav.home">Inicio</a>
+        <a href="/nosotros" data-i18n="nav.about">Nosotros</a>
+        <a href="/servicios" data-i18n="nav.services">Servicios</a>
+        <a href="/galeria" data-i18n="nav.gallery">Galería</a>
+        <a href="/reviews" data-i18n="nav.reviews">Reseñas</a>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="foot.contact">Contacto</h4>
+        <a href="/contacto" data-i18n="nav.contact">Contacto</a>
+        <a href="mailto:contact@lululaupets.com" data-i18n="foot.email">contact@lululaupets.com</a>
+        <a href="https://wa.me/34633032738" target="_blank" rel="noopener">+34 633 032 738</a>
+        <a href="https://maps.google.com/?q=El+Médano,+Tenerife,+Canarias" target="_blank" rel="noopener" data-i18n="foot.location">El Médano, Tenerife</a>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="foot.follow">Síguenos</h4>
+        <a href="https://www.instagram.com/lululau.pets" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.lululaupets.com" target="_blank" rel="noopener">lululaupets.com</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Lululau Pets · <span data-i18n="foot.rights">Todos los derechos reservados.</span></span>
+      <span data-i18n="foot.made">Hecho con cariño por Luz y Lautaro.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/i18n.js"></script>
+<script src="assets/app.js"></script>
+<script>
+(function () {
+  var EMAIL = "contact@lululaupets.com"; // TODO: reemplazar por el email real de Luz y Lautaro
+
+  // ---- Star rating ----
+  var stars = Array.prototype.slice.call(document.querySelectorAll("#stars-input button"));
+  var ratingInput = document.getElementById("r-rating");
+  var rating = 0;
+
+  function paint(n) {
+    stars.forEach(function (s, i) {
+      var on = i < n;
+      s.classList.toggle("on", on);
+      s.setAttribute("aria-checked", (i + 1) === n ? "true" : "false");
+    });
+  }
+  stars.forEach(function (s) {
+    var v = parseInt(s.getAttribute("data-val"), 10);
+    s.addEventListener("mouseenter", function () { paint(v); });
+    s.addEventListener("focus", function () { paint(v); });
+    s.addEventListener("click", function () { rating = v; ratingInput.value = String(v); paint(v); });
+  });
+  document.getElementById("stars-input").addEventListener("mouseleave", function () { paint(rating); });
+
+  // ---- Form submit: validate, build mailto, show success ----
+  var form = document.getElementById("review-form");
+  var success = document.getElementById("review-success");
+  var resetBtn = document.getElementById("review-reset");
+
+  function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ""; }
+  function t(k) { return (window.LululauI18n && window.LululauI18n.t) ? (window.LululauI18n.t(k) || k) : k; }
+
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      // Require rating in addition to native validation
+      if (!rating) { ratingInput.setCustomValidity(t("rv.f.rating.hint")); }
+      else { ratingInput.setCustomValidity(""); }
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      var name = val("r-name");
+      var subject = t("rv.em.subject") + name;
+      var body =
+        t("rv.body.intro") + "\n\n" +
+        t("rv.body.name") + ": " + name + "\n" +
+        t("rv.body.pet") + ": " + val("r-pet") + "\n" +
+        t("rv.body.loc") + ": " + val("r-loc") + "\n" +
+        t("rv.body.rating") + ": " + rating + "/5\n\n" +
+        t("rv.body.review") + ":\n" + val("r-review") + "\n";
+
+      // Open the user's email client with everything pre-filled
+      window.location.href = "mailto:" + EMAIL +
+        "?subject=" + encodeURIComponent(subject) +
+        "&body=" + encodeURIComponent(body);
+
+      form.style.display = "none";
+      success.classList.add("show");
+      var y = success.getBoundingClientRect().top + window.scrollY - 120;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    });
+  }
+
+  if (resetBtn) {
+    resetBtn.addEventListener("click", function () {
+      form.reset();
+      rating = 0; ratingInput.value = ""; ratingInput.setCustomValidity(""); paint(0);
+      success.classList.remove("show");
+      form.style.display = "grid";
+      var y = form.getBoundingClientRect().top + window.scrollY - 120;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    });
+  }
+})();
+</script>
+</body>
+</html>

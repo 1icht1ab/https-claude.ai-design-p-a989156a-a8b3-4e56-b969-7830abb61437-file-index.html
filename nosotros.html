@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es" data-title-key="ab.meta.title" data-desc-key="ab.meta.desc">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nosotros — Lululau Pets</title>
+<meta name="description" content="Somos Luz y Lautaro: una pareja que cuida hogares y mascotas por el mundo desde febrero de 2024. 50+ sits en 5 países." />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+<meta property="og:title" content="Nosotros — Lululau Pets" />
+<meta property="og:description" content="Dos personas. Mucha experiencia. Ninguna prisa." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="assets/photos/hero-couple.jpg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="assets/base.css" />
+
+<style>
+/* ============================================================
+   NOSOTROS — page-specific
+   ============================================================ */
+.ab-photo { overflow: hidden; background: oklch(0.89 0.018 70); }
+.ab-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* HERO (asymmetric, same rhythm as home) */
+.ab-hero .wrap { padding-top: clamp(40px, 6vw, 76px); padding-bottom: clamp(48px, 7vw, 96px); }
+.ab-hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+.ab-hero h1 { font-size: clamp(38px, 5.4vw, 70px); line-height: 1.1; margin: var(--space-6) 0 var(--space-6); }
+.ab-hero .lead { font-size: clamp(17px, 1.1rem + 0.3vw, 21px); color: var(--color-text-muted); max-width: 40ch; }
+.ab-hero-media { position: relative; }
+.ab-hero-photo { width: 100%; aspect-ratio: 4 / 5; border-radius: 56% 44% 52% 48% / 60% 56% 44% 40%; box-shadow: var(--shadow-lg); }
+.ab-hero-photo img { object-position: center 30%; }
+.ab-hero-deco { position: absolute; z-index: -1; width: 64%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 35% 30%, var(--color-primary) 0%, var(--color-primary-deep) 100%); opacity: 0.14; bottom: -6%; left: -8%; }
+.ab-hero-stat { position: absolute; top: 14px; right: -10px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--r-xl); padding: 12px 18px; box-shadow: var(--shadow-md); text-align: center; }
+.ab-hero-stat b { font-family: var(--font-display); font-size: 30px; line-height: 1; color: var(--color-primary-deep); display: block; }
+.ab-hero-stat small { font-size: 12px; color: var(--color-text-muted); letter-spacing: 0.03em; }
+
+/* WHO WE ARE */
+.ab-who { background: var(--color-surface); border-block: 1px solid var(--color-border); }
+.ab-who-head { max-width: 640px; margin-bottom: clamp(36px, 4vw, 56px); }
+.ab-who-head h2 { font-size: clamp(30px, 3.4vw, 46px); margin-top: var(--space-4); }
+.ab-who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 4vw, 56px); align-items: start; }
+.ab-bios { display: grid; gap: clamp(28px, 3vw, 40px); }
+.ab-bio { display: grid; grid-template-columns: 96px 1fr; gap: var(--space-6); align-items: start; }
+.ab-bio-photo { width: 96px; height: 120px; border-radius: var(--r-lg); }
+.ab-bio-photo.luz img { object-position: center 20%; }
+.ab-bio h3 { font-family: var(--font-display); font-weight: 400; font-size: clamp(26px, 2.6vw, 32px); line-height: 1; }
+.ab-bio .role { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-accent-deep); margin: 6px 0 var(--space-3); }
+.ab-bio p { color: var(--color-text-muted); font-size: 15.5px; }
+.ab-origin { position: relative; }
+.ab-origin-photo { width: 100%; aspect-ratio: 1 / 1; border-radius: var(--r-xl); box-shadow: var(--shadow-md); }
+.ab-origin-cap { margin-top: var(--space-3); font-size: 13px; color: var(--color-text-muted); font-style: italic; font-family: var(--font-display); }
+
+/* ROUTE TIMELINE */
+.ab-route-head { max-width: 700px; margin-bottom: clamp(40px, 5vw, 64px); }
+.ab-route-head h2 { font-size: clamp(30px, 3.6vw, 50px); margin-top: var(--space-4); }
+.ab-route-head p { color: var(--color-text-muted); margin-top: var(--space-3); font-size: clamp(16px, 1.6vw, 19px); }
+.ab-timeline { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; position: relative; }
+.ab-stop { position: relative; padding-top: 40px; padding-right: var(--space-4); }
+.ab-stop::before { content: ""; position: absolute; top: 7px; left: 0; right: 0; height: 2px; background: var(--color-border); }
+.ab-stop:last-child::before { right: 50%; }
+.ab-stop::after { content: ""; position: absolute; top: 1px; left: 0; width: 14px; height: 14px; border-radius: 50%; background: var(--color-primary); border: 3px solid var(--color-bg); }
+.ab-stop:nth-child(even)::after { background: var(--color-accent); }
+.ab-stop .num { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; color: var(--color-text-muted); }
+.ab-stop h3 { font-family: var(--font-display); font-weight: 400; font-size: clamp(20px, 2vw, 26px); line-height: 1.05; margin: 4px 0 6px; }
+.ab-stop p { font-size: 13px; color: var(--color-text-muted); line-height: 1.4; }
+.ab-stop.current .num { color: var(--color-primary-deep); }
+.ab-stop.current::after { width: 16px; height: 16px; top: 0; box-shadow: 0 0 0 4px oklch(0.55 0.09 180 / 0.18); }
+
+/* VALUES — numbered text blocks, no cards, no icons */
+.ab-val { background: var(--color-surface); border-block: 1px solid var(--color-border); }
+.ab-val-head { max-width: 560px; margin-bottom: clamp(36px, 4vw, 56px); }
+.ab-val-head h2 { font-size: clamp(32px, 3.8vw, 52px); margin-top: var(--space-4); }
+.ab-val-list { display: grid; gap: 0; }
+.ab-val-item { display: grid; grid-template-columns: clamp(56px, 7vw, 96px) minmax(0, 1fr) minmax(0, 1.4fr); gap: clamp(16px, 3vw, 48px); align-items: baseline; padding-block: clamp(24px, 3vw, 36px); border-top: 1px solid var(--color-divider); }
+.ab-val-item:first-child { border-top: none; }
+.ab-val-num { font-family: var(--font-display); font-size: clamp(28px, 3vw, 44px); color: var(--color-primary); line-height: 1; }
+.ab-val-item:nth-child(even) .ab-val-num { color: var(--color-accent); }
+.ab-val-item h3 { font-family: var(--font-display); font-weight: 400; font-size: clamp(24px, 2.6vw, 34px); line-height: 1; }
+.ab-val-item p { color: var(--color-text-muted); font-size: 16px; }
+
+/* WHAT MOVES US */
+.ab-move-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+.ab-move-head h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(30px, 3.6vw, 50px); line-height: 1.05; margin: var(--space-4) 0 var(--space-6); }
+.ab-move-head p { color: var(--color-text-muted); font-size: clamp(16px, 1.05rem + 0.2vw, 19px); }
+.ab-move-photos { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+.ab-move-photos figure { margin: 0; }
+.ab-move-photos .ab-photo { border-radius: var(--r-lg); box-shadow: var(--shadow-sm); }
+.ab-move-photos .p1 { aspect-ratio: 3 / 4; }
+.ab-move-photos .p2 { aspect-ratio: 3 / 4; margin-top: clamp(20px, 4vw, 40px); }
+.ab-move-photos figcaption { margin-top: 8px; font-size: 12.5px; color: var(--color-text-muted); font-style: italic; font-family: var(--font-display); }
+
+/* FINAL CTA + footnote */
+.ab-cta-foot { display: block; margin-top: var(--space-6); font-size: 13px; letter-spacing: 0.05em; opacity: 0.82; text-transform: uppercase; }
+
+@media (max-width: 980px) {
+  .ab-hero-grid { grid-template-columns: 1fr; gap: var(--space-12); }
+  .ab-hero-media { max-width: 440px; margin-inline: auto; order: -1; }
+  .ab-who-grid { grid-template-columns: 1fr; gap: var(--space-10); }
+  .ab-origin { max-width: 520px; }
+  .ab-timeline { grid-template-columns: 1fr 1fr; gap: var(--space-6) var(--space-4); }
+  .ab-stop { padding-top: 0; padding-left: 26px; }
+  .ab-stop::before { display: none; }
+  .ab-stop::after { top: 4px; left: 0; }
+  .ab-stop.current::after { top: 3px; }
+  .ab-val-item { grid-template-columns: clamp(48px, 10vw, 72px) 1fr; }
+  .ab-val-item p { grid-column: 2; }
+  .ab-move-grid { grid-template-columns: 1fr; gap: var(--space-10); }
+}
+@media (max-width: 540px) {
+  .ab-bio { grid-template-columns: 72px 1fr; gap: var(--space-4); }
+  .ab-bio-photo { width: 72px; height: 92px; }
+  .ab-timeline { grid-template-columns: 1fr; }
+  .ab-val-item { grid-template-columns: 40px 1fr; gap: var(--space-3); column-gap: var(--space-4); }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main" data-i18n="nav.skip">Saltar al contenido</a>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <div class="nav-inner">
+      <a class="brand" href="/" aria-label="Lululau Pets">
+        <img src="assets/logo.png" alt="Lululau Pets — perro y gato ilustrados" />
+        <span class="brand-name"><b>Lululau</b> <span>Pets</span></span>
+      </a>
+
+      <nav class="nav-links" aria-label="Principal">
+        <a href="/" data-i18n="nav.home">Inicio</a>
+        <a href="/nosotros" data-i18n="nav.about" aria-current="page">Nosotros</a>
+        <a href="/servicios" data-i18n="nav.services">Servicios</a>
+        <a href="/galeria" data-i18n="nav.gallery">Galería</a>
+        <a href="/reviews" data-i18n="nav.reviews">Reseñas</a>
+        <a href="/contacto" data-i18n="nav.contact">Contacto</a>
+      </nav>
+
+      <div class="nav-right">
+        <div class="langs" role="group" aria-label="Language">
+          <button type="button" data-lang="es" aria-pressed="true">ES</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+          <button type="button" data-lang="de" aria-pressed="false">DE</button>
+          <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+        </div>
+        <a class="btn btn-primary nav-cta" href="/contacto" data-i18n="nav.cta">Agendar videollamada</a>
+        <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-inner">
+        <a href="/" data-i18n="nav.home">Inicio</a>
+        <a href="/nosotros" data-i18n="nav.about">Nosotros</a>
+        <a href="/servicios" data-i18n="nav.services">Servicios</a>
+        <a href="/galeria" data-i18n="nav.gallery">Galería</a>
+        <a href="/reviews" data-i18n="nav.reviews">Reseñas</a>
+        <a href="/contacto" data-i18n="nav.contact">Contacto</a>
+        <a class="btn btn-primary" href="/contacto" data-i18n="nav.cta">Agendar videollamada</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="ab-hero">
+    <div class="wrap">
+      <div class="ab-hero-grid">
+        <div class="ab-hero-text">
+          <p class="kicker" data-i18n="ab.h.kicker">Nosotros</p>
+          <h1 class="display" data-i18n="ab.h.title">Dos personas. Mucha experiencia. Ninguna prisa.</h1>
+          <p class="lead" data-i18n="ab.h.lead">Somos Luz y Lautaro. Llevamos cuidando hogares y mascotas alrededor del mundo desde febrero de 2024.</p>
+        </div>
+        <div class="ab-hero-media">
+          <span class="ab-hero-deco" aria-hidden="true"></span>
+          <div class="ab-hero-photo ab-photo">
+            <img src="assets/photos/hero-couple.jpg" data-i18n-attr="alt:ab.h.photo" alt="Luz y Lautaro" loading="eager" decoding="async" />
+          </div>
+          <div class="ab-hero-stat">
+            <b>50+</b>
+            <small data-i18n="ab.h.stat">sits · 5 países</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHO WE ARE ============ -->
+  <section class="ab-who section" id="who">
+    <div class="wrap">
+      <div class="ab-who-head reveal">
+        <p class="kicker" data-i18n="ab.who.k">Quiénes somos</p>
+        <h2 class="display" data-i18n="ab.who.t">Empezó por amor a los animales. Siguió por amor a viajar.</h2>
+      </div>
+      <div class="ab-who-grid">
+        <div class="ab-bios reveal">
+          <article class="ab-bio">
+            <div class="ab-bio-photo ab-photo luz">
+              <img src="assets/photos/luz-profile.jpg" alt="Luz" loading="eager" decoding="async" />
+            </div>
+            <div>
+              <h3 data-i18n="ab.who.luz.name">Luz</h3>
+              <p class="role" data-i18n="ab.who.luz.role">Diseñadora web · Argentina</p>
+              <p data-i18n="ab.who.luz.text">Soy de Mendoza. Siempre fui la persona que se queda mirando los perros en la calle, la que salva a gatos de la lluvia y la que cree que una casa sin mascota es una casa vacía.
+De pequeña mi mejor amiga fue Daysi, mi perrita, Cuando se fue, sentí que algo se rompía para siempre. Después vinieron los conejitos como terapia, Frida mi cuyi con cara de sabio, y cuando creía que ya no podía llenar ese espacio, llegó Lola para recordarme que el amor también sabe reinventarse.
+Conocí a Lautaro en Budapest en época de la pandemia, y desde entonces compartimos el mismo impulso: movernos, conocer, dejar algo bueno donde pasamos.</p>
+            </div>
+          </article>
+          <article class="ab-bio">
+            <div class="ab-bio-photo ab-photo">
+              <img src="assets/photos/lautaro-profile.jpg" alt="Lautaro" loading="eager" decoding="async" />
+            </div>
+            <div>
+              <h3 data-i18n="ab.who.lau.name">Lautaro</h3>
+              <p class="role" data-i18n="ab.who.lau.role">DANZA CONTEMPORANEA, ARGENTINA</p>
+              <p data-i18n="ab.who.lau.text">Soy de la Patagonia argentina. Crecí en una pequeña granja familiar, siempre rodeado de animales y sintiéndome parte de la manada, algo que marcó mi conexión profunda y mi amor por ellos.
+Estudié Danza Contemporánea, lo que me dió disciplina, sensibilidad y una empatía natural que traslado al cuidado de cada animal. 
+
+
+Cuando Luz y yo vivíamos en Melbourne, queríamos explorar la mayor parte posible de Australia sin hoteles, sin quedarnos en un solo lugar. Trusted House Sitting fue la puerta perfecta. Nuestro primer sit fue hermoso. Supimos al instante que esto era algo que queríamos seguir haciendo en más países, con más animales, por más tiempo.</p>
+            </div>
+          </article>
+        </div>
+        <figure class="ab-origin reveal">
+          <div class="ab-origin-photo ab-photo">
+            <img src="assets/photos/couple-padang.jpg" data-i18n-attr="alt:ab.who.cap" alt="Luz y Lautaro con Padang" loading="eager" decoding="async" />
+          </div>
+          <figcaption class="ab-origin-cap" data-i18n="ab.who.cap">Luz y Lautaro con Padang</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ROUTE / TIMELINE ============ -->
+  <section class="ab-route section" id="route">
+    <div class="wrap">
+      <div class="ab-route-head reveal">
+        <p class="kicker" data-i18n="ab.route.k">Nuestra ruta</p>
+        <h2 class="display" data-i18n="ab.route.t">50+ sits · 5 países · desde febrero de 2024</h2>
+        <p data-i18n="ab.route.lead">Cada casa, cada mascota, cada host nos enseñó algo nuevo.</p>
+      </div>
+      <div class="ab-timeline reveal">
+        <div class="ab-stop">
+          <div class="num">2024</div>
+          <h3 data-i18n="ab.route.1">Australia</h3>
+          <p data-i18n="ab.route.1c">Melbourne · Brisbane · Gold Coast</p>
+        </div>
+        <div class="ab-stop">
+          <div class="num">2024</div>
+          <h3 data-i18n="ab.route.2">España</h3>
+          <p data-i18n="ab.route.2c">Barcelona · Cadiz · Almeria · Badalona</p>
+        </div>
+        <div class="ab-stop">
+          <div class="num">2025</div>
+          <h3 data-i18n="ab.route.3">Andorra</h3>
+          <p data-i18n="ab.route.3c">Andorra la Vella</p>
+        </div>
+        <div class="ab-stop">
+          <div class="num">2025</div>
+          <h3 data-i18n="ab.route.4">Portugal</h3>
+          <p data-i18n="ab.route.4c">Braga</p>
+        </div>
+        <div class="ab-stop">
+          <div class="num">2025</div>
+          <h3 data-i18n="ab.route.5">Reino Unido</h3>
+          <p data-i18n="ab.route.5c">Londres · Cotswolds</p>
+        </div>
+        <div class="ab-stop current">
+          <div class="num" data-i18n="ab.route.now">Ahora</div>
+          <h3 data-i18n="ab.route.6">Islas Canarias</h3>
+          <p data-i18n="ab.route.6c">Nuestra base actual</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VALUES ============ -->
+  <section class="ab-val section" id="values">
+    <div class="wrap">
+      <div class="ab-val-head reveal">
+        <p class="kicker" data-i18n="ab.val.k">Valores</p>
+        <h2 class="display" data-i18n="ab.val.t">Lo que no negociamos.</h2>
+      </div>
+      <div class="ab-val-list">
+        <div class="ab-val-item reveal">
+          <span class="ab-val-num">01</span>
+          <h3 data-i18n="ab.val.1t">Transparencia</h3>
+          <p data-i18n="ab.val.1d">Comunicación constante, sin sorpresas.</p>
+        </div>
+        <div class="ab-val-item reveal">
+          <span class="ab-val-num">02</span>
+          <h3 data-i18n="ab.val.2t">Compromiso</h3>
+          <p data-i18n="ab.val.2d">Vivimos en vuestra casa, no vamos por turno.</p>
+        </div>
+        <div class="ab-val-item reveal">
+          <span class="ab-val-num">03</span>
+          <h3 data-i18n="ab.val.3t">Cuidado real</h3>
+          <p data-i18n="ab.val.3d">No es un servicio, es responsabilidad personal.</p>
+        </div>
+        <div class="ab-val-item reveal">
+          <span class="ab-val-num">04</span>
+          <h3 data-i18n="ab.val.4t">Experiencia</h3>
+          <p data-i18n="ab.val.4d">50+ sits, 5 países, 5/5 estrellas en TrustedHousesitters.</p>
+        </div>
+        <div class="ab-val-item reveal">
+          <span class="ab-val-num">05</span>
+          <h3 data-i18n="ab.val.5t">Cercanía</h3>
+          <p data-i18n="ab.val.5d">Somos una pareja real, no una empresa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHAT MOVES US ============ -->
+  <section class="ab-move section" id="move">
+    <div class="wrap">
+      <div class="ab-move-grid">
+        <div class="ab-move-head reveal">
+          <p class="kicker" data-i18n="ab.move.k">Lo que nos mueve</p>
+          <h2 data-i18n="ab.move.t">Cada animal que cuidamos nos pertenece un poco.</h2>
+          <p data-i18n="ab.move.text">No tenemos mascotas propias, las dejamos en Argentina con nuestra familia. Quizás por eso cada animal que cuidamos nos pertenece un poco. Para nosotros, Pöly, la gatita de Badalona que pasó por quimioterapia, fue especial: compartir con Pelle y Pöly era siempre divertido.</p>
+        </div>
+        <div class="ab-move-photos reveal">
+          <figure>
+            <div class="ab-photo p1">
+              <img src="assets/photos/luz-teddy.jpg" data-i18n-attr="alt:ab.move.cap1" alt="Luz con Pöly" loading="eager" decoding="async" />
+            </div>
+            <figcaption data-i18n="ab.move.cap1">Luz con Pöly</figcaption>
+          </figure>
+          <figure>
+            <div class="ab-photo p2">
+              <img src="assets/photos/lautaro-garden.jpg" data-i18n-attr="alt:ab.move.cap2" alt="Lautaro regando el jardín, con Murray" loading="eager" decoding="async" />
+            </div>
+            <figcaption data-i18n="ab.move.cap2">Lautaro regando el jardín, con Murray</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section class="final section" id="contact-cta">
+    <div class="wrap">
+      <div class="final-panel reveal">
+        <div class="inner">
+          <h2 data-i18n="ab.cta.t">Conoce a la pareja que cuidará de todo.</h2>
+          <p data-i18n="cta.lead">Una videollamada gratis de 20 minutos para conocernos.</p>
+          <a class="btn btn-accent" href="/contacto" data-i18n="cta.btn">Agendar videollamada gratuita</a>
+          <span class="ab-cta-foot" data-i18n="ab.cta.foot">Based in Canary Islands · Available worldwide</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="/">
+          <img src="assets/logo.png" alt="Lululau Pets" width="44" height="44" />
+          <span class="brand-name"><b>Lululau</b> <span>Pets</span></span>
+        </a>
+        <p data-i18n="foot.tagline">Tu casa y tus mascotas, en las mejores manos.</p>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="foot.nav">Navegación</h4>
+        <a href="/" data-i18n="nav.home">Inicio</a>
+        <a href="/nosotros" data-i18n="nav.about">Nosotros</a>
+        <a href="/servicios" data-i18n="nav.services">Servicios</a>
+        <a href="/galeria" data-i18n="nav.gallery">Galería</a>
+        <a href="/reviews" data-i18n="nav.reviews">Reseñas</a>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="foot.contact">Contacto</h4>
+        <a href="/contacto" data-i18n="nav.contact">Contacto</a>
+        <a href="mailto:contact@lululaupets.com" data-i18n="foot.email">contact@lululaupets.com</a>
+        <a href="https://wa.me/34633032738" target="_blank" rel="noopener">+34 633 032 738</a>
+        <a href="https://maps.google.com/?q=El+Médano,+Tenerife,+Canarias" target="_blank" rel="noopener" data-i18n="foot.location">El Médano, Tenerife</a>
+      </div>
+      <div class="foot-col">
+        <h4 data-i18n="foot.follow">Síguenos</h4>
+        <a href="https://www.instagram.com/lululau.pets" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.lululaupets.com" target="_blank" rel="noopener">lululaupets.com</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Lululau Pets · <span data-i18n="foot.rights">Todos los derechos reservados.</span></span>
+      <span data-i18n="foot.made">Hecho con cariño por Luz y Lautaro.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/i18n.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
